@@ -1,0 +1,55 @@
+NOTE: Slack Michael color palettes and other questions about site decisions. 
+Michael will be business partner/client throughout project
+
+Log in should be separate from sign up
+Make the Log in a model
+
+color schemes
+
+Opacity works well for active vs inactive
+
+Three image carousel Images of Cities 
+and the image links to the city
+
+Topics any topics
+
+Font = Sans seraph
+
+Regular text is seraph
+
+Sign in and sign up changes to logout link etc.
+
+Welcome "Username" and username would link to profile page
+
+Logout on same line as "Welcome  User"
+
+Client is open to design on the cards for each city (whether or not box has rounded edges etc.)
+Make it so that the current city we are on is denoted, highlighted etc.
+
+Hover indication over cities
+
+The posts are any user generated content (restaurant in x city, "This is best city ever, check out x city",
+ Things to do in the city)
+
+There will be future content criteria of what is in the city
+
+No design structure or guidelines
+
+create a new post will be model
+
+Navbar 100 percent view width,
+ just make sure nothing is clumped together
+
+When user logs in, it will redirect to user page, username, bio, current city,
+default icon if there is no image for profile pic 
+
+All titles to posts will be listed on user profile
+
+cities post page will have user img under "cities"
+
+Stretch goal: user can add profile pic
+
+Can present additional features to client
+
+Can "Color Outside the lines" as long as sufficient reasoning is 
+provided to client
