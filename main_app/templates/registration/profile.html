@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+    <p>Hello</p>
+    {{user.username}}
+    {{user.date_joined}}
+    {{user.profile.get_city_display}}
+{% endblock content %}
