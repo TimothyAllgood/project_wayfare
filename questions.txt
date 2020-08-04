@@ -1,0 +1,25 @@
+Wayfarer Project Questions:
+
+What does the blank search bar do in the bottom left corner? Next to Wayfarer header.
+
+Is there a theme, Style or background color?
+
+Is there a a specific border, padding and margin that we should use between elements?
+
+What kind of image goes next to the Wayfarer text in the picture box? A profile pic (headshot)? Any kind of pic for a profile pic?
+
+In the top left quadrant, is the large image box supposed to be a carousel? If yes, are the pictures supposed to be of locations, people or both?
+
+What are the three topics supposed to be about? Webpage (i.e. travel blog cool Locations) Like an Instagram of actual geographical locations? 
+
+Can these locations be landmarks in nature or historic sites, or must they be cities?
+
+What color is the navbar and buttons?
+
+How wide is the navbar supposed to be? 
+
+Do the Sign up/ Log in buttons take the user to the same large prompt or can it be splt? (It could be annoying to see the sign-up promt for existing users just trying to log in.)
+
+
+
+
