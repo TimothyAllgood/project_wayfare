@@ -1,0 +1,40 @@
+/* Nav */
+.nav-item {
+	padding: 15px;
+}
+
+a {
+	color: white;
+}
+
+/* Carousel */
+
+.carousel-item,
+.carousel-inner,
+.carousel-inner img {
+	height: 100%;
+	width: auto;
+}
+.carousel-item {
+	text-align: center;
+}
+
+.carousel {
+	width: 80vw;
+	margin: 0 auto;
+	height: 500px;
+}
+
+.card-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* Footer */
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100vw;
+	text-align: center;
+}

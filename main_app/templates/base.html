@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,21 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
     <script defer src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js" integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J" crossorigin="anonymous"></script>
     <title>Project Wayfarer</title>
 </head>
 <body>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-dark bg-dark">
         <div class="logo">
-            <h1>Project Wayfarer</h1>
+            <a href="{% url 'home' %}"><h1>Project Wayfarer</h1></a>
         </div>
     {% if user.is_authenticated %}
-    <ul>
-        <li><a href="{% url 'profile' %}">Welcome, {{user.username}} </a></li>
-        <li><a href="{% url 'logout' %}">Log Out</a></li>
+    <ul class="nav">
+        <li class="nav-item"><a href="{% url 'profile' %}">Welcome, {{user.username}} </a></li>
+        <li class="nav-item"><a href="{% url 'logout' %}">Log Out</a></li>
     </ul>
     {% else %}
     <ul>
