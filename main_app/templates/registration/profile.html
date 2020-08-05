@@ -5,8 +5,10 @@
     {{user.date_joined}}
     {{user.profile.get_city_display}}
     <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.avatar }}
+        {% csrf_token %}
+        <input type="text" name='username' placeholder='Username' value="{{user.username}}">
+        {{ form.city }}
+        {{ form.avatar}}
         <input type="submit" value="Upload avatar">
     </form>
     {% if user.profile.avatar.url %}

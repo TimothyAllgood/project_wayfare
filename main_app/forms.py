@@ -23,6 +23,7 @@ class SignUpForm(UserCreationForm):
 # Used info from https://medium.com/@szczerbeansky/django-web-app-and-images-cloudinary-straightforward-study-ae8b5bb03e37 for Cloudinary Upload
 
 class AvatarUploadForm(forms.ModelForm):
+    city = forms.CharField(label='Current City?', widget=forms.Select(choices=CITIES))
     avatar = CloudinaryFileField(
         options = {
             'crop': 'thumb',
@@ -32,5 +33,5 @@ class AvatarUploadForm(forms.ModelForm):
        }
     )
     class Meta:
-        model = Profile
-        fields = ('avatar',)
+        model = User
+        fields = ('username', 'avatar', 'city',)
