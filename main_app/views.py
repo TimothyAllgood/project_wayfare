@@ -8,18 +8,18 @@ from django.contrib.auth.decorators import login_required
 
 # Temp Post Data
 class Post:
-    def __init__(self, title, content, author,):
+    def __init__(self, title, content, author, id):
         self.title = title
         self.content = content
         self.author = author
-      
-
+        self.id = id
 
 posts = [
-   Post('Travellers guide', 'content', 'auth name'),
-   Post('Top Cities', 'content', 'auth name',),
-   Post('Best Dining While Travelling', 'content', 'auth name'),
+    Post('Travellers guide', 'content', 'auth name', 0),
+    Post('Top Cities', 'content', 'auth name', 1),
+    Post('Best Dining While Travelling', 'content', 'auth name', 2),
 ]
+
 
 # Create your views here.
 def home(request):
@@ -53,12 +53,12 @@ def signup(request):
 
 @login_required
 def profile(request):
+    
     user = request.user
     logged_user = User.objects.get(username=user)
     instance = get_object_or_404(Profile, user=user)
     if request.method == "POST":
         form = AvatarUploadForm(request.POST, request.FILES, instance=instance)
-        print(instance)
         if form.is_valid():
             logged_user.username = request.POST['username']
             logged_user.save()
@@ -67,6 +67,7 @@ def profile(request):
     form = AvatarUploadForm()
     return render(request, 'registration/profile.html', {'form': form, 'posts': posts})
 
-def posts(request, post_id,):
-    return render(request, 'post.html')
+def get_posts(request, post_id):
+    post = posts[post_id]
+    return render(request, 'post.html', {'post': post})
 
