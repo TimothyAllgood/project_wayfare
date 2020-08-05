@@ -14,4 +14,9 @@
     {% if user.profile.avatar.url %}
     <img src="{{ user.profile.avatar.url }}" class="rounded-circle" width="150", height="150">
     {% endif  %}
+{% for post in posts %}
+
+<a href="{% url 'posts' post.id %}">{{ post.title }}</a>
+{% endfor %}
+
 {% endblock content %}
