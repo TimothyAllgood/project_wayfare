@@ -9,6 +9,13 @@ body {
 	font-family: 'Montserrat', sans-serif;
 }
 
+.helptext {
+	display: none;
+}
+form ul {
+	display: none;
+}
+
 /* h1,
 h2,
 h3 {

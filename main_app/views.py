@@ -33,18 +33,20 @@ def signup(request):
     if request.method == 'POST':
     # This is how to create a 'user' form object
     # that includes the data from the browser
-            form = SignUpForm(request.POST)
-            if form.is_valid():
-            # This will add the user to the database
-                user = form.save()
-                user.refresh_from_db()
-                user.profile.city = form.cleaned_data.get('city')
-                user.save()
-      # This is how we log a user in via code
-                login(request, user)
-                return redirect('home')
-            else:
-                error_message = 'Invalid sign up - try again'
+        form = SignUpForm(request.POST)
+        print(request.POST['username'])
+        if form.is_valid():
+        # This will add the user to the database
+            user = form.save()
+            user.refresh_from_db()
+            user.profile.city = form.cleaned_data.get('city')
+            user.save()
+    # This is how we log a user in via code
+            login(request, user)
+            return redirect('home')
+        else:
+            error_message = 'Invalid sign up - try again'
+            return redirect('home')
   # A bad POST or a GET request, so render signup.html with an empty form
     else:
         form = SignUpForm()
