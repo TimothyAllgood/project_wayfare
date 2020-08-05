@@ -1,7 +1,10 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .forms import SignUpForm
+from .forms import SignUpForm, AvatarUploadForm
+from .models import Profile
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
@@ -33,5 +36,18 @@ def signup(request):
         context = {'form': form, 'error_message': error_message}
         return render(request, 'registration/signup.html', context)
 
+@login_required
 def profile(request):
-    return render(request, 'registration/profile.html')
+    user = request.user
+    logged_user = User.objects.get(username=user)
+    instance = get_object_or_404(Profile, user=user)
+    if request.method == "POST":
+        form = AvatarUploadForm(request.POST, request.FILES, instance=instance)
+        print(instance)
+        if form.is_valid():
+            logged_user.username = request.POST['username']
+            logged_user.save()
+            form.save()
+            return redirect('/profile')
+    form = AvatarUploadForm()
+    return render(request, 'registration/profile.html', {'form': form})

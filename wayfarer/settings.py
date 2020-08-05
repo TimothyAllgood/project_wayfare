@@ -11,6 +11,14 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import cloudinary
+import environ
+
+# https://djangocentral.com/environment-variables-in-django/
+
+env = environ.Env()
+# reading .env file
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -38,7 +46,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary'
 ]
+
+cloudinary.config(
+  cloud_name = env('CLOUD_NAME'),
+  api_key = env('API_KEY'),
+  api_secret = env('API_SECRET'),
+  secure = True
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
