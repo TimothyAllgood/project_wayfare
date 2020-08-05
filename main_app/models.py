@@ -9,6 +9,11 @@ CITIES = (
     ('L', 'London'),
     )
 
+class City(models.Model):
+    name = models.CharField(
+        max_length=250,
+    )
+
 class Profile(models.Model):
     avatar = CloudinaryField('avatar')
     user = models.OneToOneField(User, on_delete=models.CASCADE)
