@@ -6,6 +6,21 @@ from .models import Profile
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
+# Temp Post Data
+class Post:
+    def __init__(self, title, content, author,):
+        self.title = title
+        self.content = content
+        self.author = author
+      
+
+
+posts = [
+   Post('Travellers guide', 'content', 'auth name'),
+   Post('Top Cities', 'content', 'auth name',),
+   Post('Best Dining While Travelling', 'content', 'auth name'),
+]
+
 # Create your views here.
 def home(request):
     signup_form = SignUpForm()
@@ -50,4 +65,8 @@ def profile(request):
             form.save()
             return redirect('/profile')
     form = AvatarUploadForm()
-    return render(request, 'registration/profile.html', {'form': form})
+    return render(request, 'registration/profile.html', {'form': form, 'posts': posts})
+
+def posts(request, post_id,):
+    return render(request, 'post.html')
+
