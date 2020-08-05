@@ -10,6 +10,7 @@
     <script defer src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js" integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J" crossorigin="anonymous"></script>
+    <script defer src="main.js"></script>
     <title>Project Wayfarer</title>
 </head>
 <body>
@@ -18,16 +19,16 @@
             <a href="{% url 'home' %}"><h1>Project Wayfarer</h1></a>
         </div>
     {% if user.is_authenticated %}
-    <ul class="nav">
+    <ul class="nav logged-in">
         <li class="nav-item"><a href="{% url 'profile' %}">Welcome, {{user.username}} </a></li>
         <li class="nav-item"><a href="{% url 'logout' %}">Log Out</a></li>
     </ul>
     {% else %}
-    <ul>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">
+    <ul class="nav logged-out">
+        <button type="button" class="btn btn-primary nav-item" data-toggle="modal" data-target="#loginModal">
             Login
         </button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signupModal">
+        <button type="button" class="btn btn-primary nav-item" data-toggle="modal" data-target="#signupModal">
             Signup
         </button>
     </ul>

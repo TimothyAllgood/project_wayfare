@@ -1,9 +1,35 @@
+/* Colors */
+:root {
+	--dark: #282b2b;
+	--main: #d36135;
+	--main-hover: #a24936;
+}
+
+/* General */
+.bg-dark {
+	background-color: var(--dark) !important;
+}
+
+.btn-primary {
+	background-color: var(--main);
+	border-color: var(--main);
+}
+
+.btn-primary:hover {
+	background-color: var(--main-hover);
+	border-color: var(--main-hover);
+}
+
 /* Nav */
-.nav-item {
+.logged-in .nav-item {
 	padding: 15px;
 }
 
-a {
+.logged-out .nav-item {
+	margin: 0 10px;
+}
+
+.navbar a {
 	color: white;
 }
 
