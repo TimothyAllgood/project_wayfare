@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="profile-container">
-        <section class="profile-info">
+        <section class="profile-info card">
             <div class="user-img">
                 {% if user.profile.avatar.url %}
                     <img src="{{ user.profile.avatar.url }}" class="rounded-circle" width="150", height="150">
@@ -9,25 +9,34 @@
                     <img src="https://picsum.photos/150" class="rounded-circle" width="150", height="150">
                 {% endif  %}
             </div>
-            <h3>My Profile</h3>
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="username"><p>Username:</p></label>
-                    <input type="text" name='username' placeholder='Username' value="{{user.username}}">
-                </div>
-                <div class="form-group">
-                    <label for="city"><p>Current City:</p></label>
-                    {{ form.city }}
-                </div>
-                <div class="form-group">
-                    <label for="avatar"><p>Profile Image:</p></label>
-                    {{ form.avatar}}
-                </div>
-                <input type="submit" value="Update Profile">
-            </form>
+            <div class="card-body">
+                <h3>My Profile</h3>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username"><p>Username:</p></label>
+                        <input type="text" name='username' placeholder='Username' value="{{user.username}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="city"><p>Current City:</p></label>
+                        {{ form.city }}
+                    </div>
+                    <div class="form-group">
+                        <label for="avatar"><p>Profile Image:</p></label>
+                        {{ form.avatar}}
+                    </div>
+                    <input type="submit" value="Update Profile">
+                </form>
+            </div>
         </section>
-        <section class="user-posts">
+        <section class="user-posts card">
+            <h4 class="city-posts">{{ user.profile.get_city_display }} Posts</h4>
+            {% for post in posts %}
+            <div class= "card-body">
+                <img src="https://picsum.photos/150" class="rounded-circle" width="50", height="50">
+                <a  href="{% url 'posts' post.id %}">{{ post.title }}</a>
+            </div>
+            {% endfor %}
         <p class="user-city" style="display:none">{{user.profile.city}}</p>
         </section>
     </div>
@@ -36,9 +45,6 @@
     {{user.profile.get_city_display}} {% endcomment %}
     
     
-{% for post in posts %}
 
-<a href="{% url 'posts' post.id %}">{{ post.title }}</a>
-{% endfor %}
 
 {% endblock content %}
