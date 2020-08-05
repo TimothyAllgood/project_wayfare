@@ -5,6 +5,16 @@
 	--main-hover: #a24936;
 }
 
+body {
+	font-family: 'Montserrat', sans-serif;
+}
+
+/* h1,
+h2,
+h3 {
+	font-family: 'Merriweather', serif;
+} */
+
 /* General */
 .bg-dark {
 	background-color: var(--dark) !important;
