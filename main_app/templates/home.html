@@ -35,7 +35,7 @@
         </button>
       </div>
       <div class="modal-body">
-        {% if request.session.error_message %}<p class="red-text">{{ request.session.error_message }}</p>{% endif %}
+        {% if request.session.error_message %}<p class="alert alert-danger">{{ request.session.error_message }}</p>{% endif %}
         <form method="post" action="/signup">
           {% csrf_token %}
           {{ signup_form.as_p }}

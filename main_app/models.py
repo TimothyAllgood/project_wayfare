@@ -4,10 +4,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from cloudinary.models import CloudinaryField
 
-CITIES = (
-    ('S', 'San Francisco'),
-    ('L', 'London'),
-    )
+
 
 class City(models.Model):
     name = models.CharField(
@@ -15,6 +12,13 @@ class City(models.Model):
     )
     class Meta:
         verbose_name_plural = 'Cities'
+
+cities = City.objects.all()
+
+CITIES = []
+
+for i, city in enumerate(cities):
+    CITIES.append((city.name[0],city.name,),)
 
 class Profile(models.Model):
     avatar = CloudinaryField('avatar')
@@ -27,7 +31,7 @@ class Profile(models.Model):
         )
 
 class Post(models.Model):
-    title = models.CharField(max_length=25)
+    title = models.CharField(max_length=200,)
     content = models.TextField(max_length=1000)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE)

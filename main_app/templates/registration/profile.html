@@ -4,7 +4,9 @@
         <section class="profile-info card">
             <div class="user-img">
                 {% if user.profile.avatar.url %}
+                <button style="border:none; background: none" data-toggle="modal" data-target="#imgModal">
                     <img src="{{ user.profile.avatar.url }}" class="rounded-circle" width="150", height="150">
+                </button>
                 {% else %}
                     <img src="https://picsum.photos/150" class="rounded-circle" width="150", height="150">
                 {% endif  %}
@@ -17,9 +19,26 @@
                         <input type="text" name='username' placeholder='Username' value="{{user.username}}">
                         {{ form.city }}
                     </div>
-                    <div class="form-group">
-                        {{ form.avatar}}
-                    </div>
+                        <div class="modal" tabindex="-1" role="dialog" id="imgModal">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Update Profile Image</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                     <div class="form-group">
+                                        {{ form.avatar}}
+                                        <img id="image" class="rounded-circle" width="150", height="150"/>
+                                      </div>
+                                      <input type="submit" value="Update Image">
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                   
                     <input type="submit" value="Update Profile">
                 </form>
             </div>
@@ -62,7 +81,20 @@
     {{user.date_joined}}
     {{user.profile.get_city_display}} {% endcomment %}
     
-    
+    <script>
+    {% comment %} https://stackoverflow.com/questions/14069421/show-an-image-preview-before-upload/31657793 {% endcomment %}
+    document.getElementById("id_avatar").onchange = function () {
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+        // get loaded data and render thumbnail.
+        document.getElementById("image").src = e.target.result;
+    };
+
+    // read the image file as a data URL.
+    reader.readAsDataURL(this.files[0]);
+};
+    </script>
 
 
 {% endblock content %}

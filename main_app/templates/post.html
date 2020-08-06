@@ -7,19 +7,20 @@
         <a class="city-link" href="{% url 'posts' one_post.id %}">{{one_post.title}}</a>
         {% endfor %}
     </section>
-    <section>
+    <section class="active-city">
         <h2>{{post.title}}</h2>
         <a href="{% url 'city_detail' post.city.id %}">{{post.city.name}}</a>
         <p>By: {{author.username}}</p>
         <hr>
         <p>{{post.content}}</p>
-        <button class="btn btn-secondary" data-toggle="modal" data-target="#PostModal">Edit</button>
-        <button class="btn btn-secondary" data-toggle="modal" data-target="#DeleteModal">Delete</button>
+        {% if user.is_authenticated and user.username == author.username %}
+            <button class="btn btn-secondary" data-toggle="modal" data-target="#PostModal">Edit</button>
+            <button class="btn btn-secondary" data-toggle="modal" data-target="#DeleteModal">Delete</button>
+        {% endif %}
         <!-- <a href="{% url 'delete_post' post.id %}">Delete</a> -->
-
-        
     </section>
 </div>
+
 <div class="modal" tabindex="-1" role="dialog" id="PostModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -51,4 +52,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}

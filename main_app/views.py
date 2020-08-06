@@ -47,6 +47,7 @@ def signup(request):
 @login_required
 def profile(request):
     user = request.user
+    
     logged_user = User.objects.get(username=user)
     instance = get_object_or_404(Profile, user=user)
     posts = logged_user.post_set.all()
@@ -54,7 +55,7 @@ def profile(request):
         form = AvatarUploadForm(request.POST, request.FILES, instance=instance)
         if form.is_valid():
             logged_user.username = request.POST['username']
-            if User.objects.filter(username = request.POST['username']).exists():
+            if User.objects.filter(username = request.POST['username']).exists() and not logged_user.username == request.POST['username']:
                 return redirect('/profile')
             else:
                 logged_user.save()
