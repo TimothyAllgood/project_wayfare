@@ -69,6 +69,10 @@ h3 {
 	text-align: center;
 }
 
+.img-fluid {
+	object-fit: cover;
+}
+
 .carousel {
 	width: 80vw;
 	margin: 0 auto;
@@ -294,13 +298,13 @@ footer p {
 	color: var(--light);
 }
 
-.delete_modal .modal-title, .delete_modal p {
+.delete_modal .modal-title,
+.delete_modal p {
 	padding: 10px;
 }
 .bg-danger {
-	background: var(--main)!important;
+	background: var(--main) !important;
 }
 .bg-danger a {
 	color: var(--light);
 }
-
