@@ -54,7 +54,7 @@ def profile(request):
         form = AvatarUploadForm(request.POST, request.FILES, instance=instance)
         if form.is_valid():
             logged_user.username = request.POST['username']
-            if User.objects.filter(username = request.POST['username']).exists():
+            if User.objects.filter(username = request.POST['username']).exists() and not logged_user.username == request.POST['username']:
                 return redirect('/profile')
             else:
                 logged_user.save()
