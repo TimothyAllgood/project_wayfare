@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="city-container">
+
+<section class="city-list">
+    {% for city in cities %}
+    <a class="city-link" href="{% url 'city_detail' city.id %}">{{city.name}}</a>
+    {% endfor %}
+</section>
+
+<section class="active-city">
+    <div class="city-info">
+        <p>{{city.name}}</p>
+        {% load static %}
+        <img class="city-image" src="{% static "images/sf.jpg" %}" alt="">
+    </div>
+    <button type="button" class="btn btn-primary nav-item round" data-toggle="modal" data-target="#loginModal">
+            +
+    </button>
+    <div class="modal" tabindex="-1" role="dialog" id="loginModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <div class="modal-body">
+                    <!-- Add the login form -->
+                <form action="" method='post'>
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <input type="submit" value="Add Post">
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="posts">
+        <h3>Posts</h3>
+        {% if city.post_set.all %}
+            {% for post in city.post_set.all %}
+            <div class="inner-post">
+                <div class="user-image">
+                    <img src="{{post.user.profile.avatar.url}}" class="rounded-circle" alt="">
+                </div>
+                <div class="post-info">
+                    <a href="{% url 'posts' post.id%}">{{post.title}}</a>
+                    <p>{{post.content}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <h3>No Posts Yet</h3>
+        {% endif %}
+    </div>
+</section>
+</main>
+{% endblock content %}

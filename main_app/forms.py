@@ -3,7 +3,7 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from cloudinary.forms import CloudinaryFileField
-from .models import Profile
+from .models import Profile, Post
 
 
 CITIES = (
@@ -35,3 +35,11 @@ class AvatarUploadForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'avatar', 'city',)
+
+class PostForm(forms.ModelForm):
+    title = forms.CharField(max_length=25, required=True)
+    content = forms.CharField(max_length=1000, required=True)
+    
+    class Meta:
+        model = Post
+        fields = ("title", "content")

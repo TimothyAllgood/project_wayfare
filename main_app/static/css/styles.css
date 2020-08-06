@@ -3,6 +3,11 @@
 	--dark: #282b2b;
 	--main: #d36135;
 	--main-hover: #a24936;
+	--light: #f1f1f1
+}
+
+*{
+	box-sizing: border-box;
 }
 
 body {
@@ -114,4 +119,70 @@ footer {
 
 .user-posts .card-body img {
 	margin: 5px;
+}
+
+/* Cities */
+
+.city-container{
+	display: flex;
+	width: 90vw;
+	margin: 25px auto;
+}
+
+.city-list{
+	width: 25vw;
+	background: var(--dark);
+	display: flex;
+	flex-direction: column;
+	margin-right: 25px;
+	align-items: center;
+	padding: 25px;
+	height: 80vh;
+}
+
+.city-link{
+	background: var(--main);
+	padding: 15px;
+	border-radius: 10px;
+	width: 80%;
+	text-align: center;
+	color: var(--light);
+}
+
+
+.active-city{
+	width: 50vw;
+	height: 80vh;
+}
+
+.city-image{
+	width: 50%;
+}
+
+.city-info{
+	display: flex;
+	justify-content: space-between;
+}
+
+.round{
+	border-radius: 50%;
+	float: right;
+	margin-top: 25px;
+}
+
+.posts{
+	clear: both;
+	display: flex;
+	flex-direction: column;
+}
+
+.inner-post{
+	display: flex;
+	margin: 12.5px 0;
+}
+
+.inner-post .user-image img{
+	margin: 0;
+	margin-right: 15px;
+	width: 75px;
 }
