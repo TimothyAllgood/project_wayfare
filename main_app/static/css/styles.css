@@ -1,6 +1,6 @@
 /* Colors */
 :root {
-	--dark: #282b2b;
+	--dark: #3e5641;
 	--main: #d36135;
 	--main-hover: #a24936;
 	--light: #f1f1f1;
@@ -46,7 +46,7 @@ h3 {
 
 /* Nav */
 .logged-in .nav-item {
-	padding: 15px;
+	margin: 0 10px;
 }
 
 .logged-out .nav-item {
@@ -110,7 +110,6 @@ footer {
 	margin: 0 auto;
 	margin-top: 30px;
 }
-
 .user-img {
 	display: flex;
 	justify-content: center;
@@ -275,3 +274,19 @@ footer {
 	margin-right: 15px;
 	width: 75px;
 }
+
+.del-btn-grp .btn {
+	background-color: #3e5641;
+	color: var(--light);
+}
+
+.delete_modal .modal-title, .delete_modal p {
+	padding: 10px;
+}
+.bg-danger {
+	background: var(--main)!important;
+}
+.bg-danger a {
+	color: var(--light);
+}
+
