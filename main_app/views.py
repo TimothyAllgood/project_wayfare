@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .forms import SignUpForm, AvatarUploadForm
-from .models import Profile
+from .models import Profile, City
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -73,3 +73,9 @@ def get_posts(request, post_id):
     post = posts[post_id]
     return render(request, 'post.html', {'post': post})
 
+
+def city_index(request):
+    cities = City.objects.all()
+    context = {'cities': cities}
+    return render(request, 'cities/city_base.html', context)
+    
