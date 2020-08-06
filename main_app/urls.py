@@ -8,4 +8,5 @@ urlpatterns = [
     path('posts/<int:post_id>/', views.get_posts, name='posts'),
     path('cities/', views.city_index, name='cities'),
     path('cities/<int:city_id>/', views.city_detail, name='city_detail'),
+    path('posts/<int:post_id>/delete', views.delete_post, name='delete_post'),
 ]

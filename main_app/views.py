@@ -66,10 +66,18 @@ def profile(request):
     return render(request, 'registration/profile.html', {'form': form, 'logged_user': 'logged_user', 'posts': posts})
 
 def get_posts(request, post_id):
+    posts = Post.objects.all()
     post = Post.objects.get(id=post_id)
-    author = User.objects.get(id=post.user_id)
-    context = {'post': post, 'author': author}
-    return render(request, 'post.html', context)
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post) 
+        if form.is_valid():
+            post = form.save()
+            return redirect('posts', post.id)
+    else:
+        form = PostForm(instance=post)
+        author = User.objects.get(id=post.user_id)
+        context = {'post': post, 'author': author, 'posts': posts, 'form': form,}
+        return render(request, 'post.html', context)
 
 
 def city_index(request):
@@ -92,4 +100,12 @@ def city_detail(request, city_id):
     else:
         context = {'cities': cities, 'city': city, "form": form, }
         return render(request, 'cities/city.html', context)
-    
+
+def delete_post(request, post_id):
+    Post.objects.get(id = post_id).delete()
+    first_post = Post.objects.all().first()
+    if Post.objects.all().count() > 0:
+        return redirect('posts', first_post.id)    
+    else:
+        return redirect('home')
+        

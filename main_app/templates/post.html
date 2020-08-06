@@ -1,12 +1,54 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="city-container">
+    <section class="city-list">
+        <h2 style="color:#f1f1f1">Posts</h2>
+        {% for one_post in posts %}
+        <a class="city-link" href="{% url 'posts' one_post.id %}">{{one_post.title}}</a>
+        {% endfor %}
+    </section>
+    <section>
+        <h2>{{post.title}}</h2>
+        <a href="{% url 'city_detail' post.city.id %}">{{post.city.name}}</a>
+        <p>By: {{author.username}}</p>
+        <hr>
+        <p>{{post.content}}</p>
+        <button class="btn btn-secondary" data-toggle="modal" data-target="#PostModal">Edit</button>
+        <button class="btn btn-secondary" data-toggle="modal" data-target="#DeleteModal">Delete</button>
+        <!-- <a href="{% url 'delete_post' post.id %}">Delete</a> -->
 
-<h2>{{post.title}}</h2>
-<p>By: {{author.username}}</p>
-<hr>
-
-<p>{{post.content}}</p>
-
-
-
+        
+    </section>
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="PostModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">{% csrf_token %}{{ form.as_p }}
+                    <button type="submit">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal delete_modal" tabindex="-1" role="dialog" id="DeleteModal">
+    <div class="modal-dialog delete_modal" role="document">
+        <div class="modal-content">
+            <h5 class="modal-title">Delete Post</h5>
+            <p>Are you sure you want to remove this post?</p>
+            <div class="btn-group del-btn-grp" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">No</span>
+                </button>
+                <button class="btn btn-secondary bg-danger"><a href="{% url 'delete_post' post.id %}">Delete</a></button>
+            </div>          
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -13,6 +13,8 @@ class City(models.Model):
     name = models.CharField(
         max_length=250,
     )
+    class Meta:
+        verbose_name_plural = 'Cities'
 
 class Profile(models.Model):
     avatar = CloudinaryField('avatar')

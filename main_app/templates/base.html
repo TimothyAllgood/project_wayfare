@@ -22,11 +22,13 @@
         </div>
     {% if user.is_authenticated %}
     <ul class="nav logged-in">
-        <li class="nav-item"><a href="{% url 'profile' %}">Welcome, {{user.username}} </a></li>
-        <li class="nav-item"><a href="{% url 'logout' %}">Log Out</a></li>
+        <a href="{% url 'cities' %}"><button class="btn btn-primary nav-item">Cities</button></a>
+        <a href="{% url 'profile' %}"><button class="btn btn-primary nav-item">Welcome, {{user.username}} </button></a>
+        <a href="{% url 'logout' %}"><button class="btn btn-primary nav-item">Log Out</button></a>
     </ul>
     {% else %}
     <ul class="nav logged-out">
+        <a href="{% url 'cities' %}"><button type='link' class="btn btn-primary nav-item">Cities</button></a>
         <button type="button" class="btn btn-primary nav-item" data-toggle="modal" data-target="#loginModal">
             Login
         </button>
