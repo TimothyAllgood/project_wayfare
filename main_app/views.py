@@ -10,7 +10,11 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     signup_form = SignUpForm()
     login_form = AuthenticationForm()
-    context = {'signup_form': signup_form, 'login_form': login_form,}
+    if request.user.is_authenticated:
+        if 'error_message' in request.session:
+            del request.session['error_message']
+            return redirect('profile')
+    context = {'signup_form': signup_form, 'login_form': login_form}
     return render(request, 'home.html', context)
 
 def signup(request):
@@ -28,9 +32,11 @@ def signup(request):
             user.save()
     # This is how we log a user in via code
             login(request, user)
-            return redirect('home')
+            if 'error_message' in request.session:
+                del request.session['error_message']
+            return redirect('profile')
         else:
-            error_message = 'Invalid sign up - try again'
+            request.session['error_message'] = 'Invalid sign up - try again'
             return redirect('home')
   # A bad POST or a GET request, so render signup.html with an empty form
     else:
@@ -48,8 +54,13 @@ def profile(request):
         form = AvatarUploadForm(request.POST, request.FILES, instance=instance)
         if form.is_valid():
             logged_user.username = request.POST['username']
-            logged_user.save()
-            form.save()
+            if User.objects.filter(username = request.POST['username']).exists():
+                return redirect('/profile')
+            else:
+                logged_user.save()
+                form.save()
+                return redirect('/profile')
+        else:
             return redirect('/profile')
     form = AvatarUploadForm()
     return render(request, 'registration/profile.html', {'form': form, 'logged_user': 'logged_user', 'posts': posts})
@@ -64,15 +75,15 @@ def get_posts(request, post_id):
 def city_index(request):
     cities = City.objects.all()
     context = {'cities': cities}
-    return render(request, 'cities/city_base.html', context)
+    return redirect('city_detail', 1)
 
 def city_detail(request, city_id):
     cities = City.objects.all()
     city = City.objects.get(id=city_id)
     form = PostForm(request.POST)
     user = request.user
-    logged_user = User.objects.get(username=user) 
     if request.method == 'POST':
+        logged_user = User.objects.get(username=user) 
         new_post = form.save(commit=False)
         new_post.city_id =  city_id
         new_post.user_id =  logged_user.id

@@ -3,15 +3,16 @@
 	--dark: #282b2b;
 	--main: #d36135;
 	--main-hover: #a24936;
-	--light: #f1f1f1
+	--light: #f1f1f1;
 }
 
-*{
+* {
 	box-sizing: border-box;
 }
 
 body {
 	font-family: 'Montserrat', sans-serif;
+	background-color: var(--light);
 }
 
 .helptext {
@@ -114,55 +115,54 @@ footer {
 	justify-content: center;
 }
 
-.card h4{
+.card h4 {
 	text-align: center;
 	margin: 25px 0;
 }
 
-.card-body h3{
+.card-body h3 {
 	text-align: center;
 }
 
 .card.profile-posts {
-    max-height: 35vh;
+	max-height: 35vh;
 }
 
-.profile-posts{
+.profile-posts {
 	overflow-y: scroll;
 }
 
-.profile-posts .card-body{
+.profile-posts .card-body {
 	margin-bottom: 35px;
 }
-.profile-posts:first-child{
+.profile-posts:first-child {
 	margin-bottom: 25px;
 }
 
-.profile-info{
+.profile-info {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	
 }
 
-.user-posts{
+.user-posts {
 	display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
-.inner-profile-post{
+.inner-profile-post {
 	display: flex;
 	align-items: center;
 }
 
-.inner-profile-post-info{
+.inner-profile-post-info {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 }
 
-.inner-profile-post-info p{
+.inner-profile-post-info p {
 	margin-bottom: 0;
 }
 
@@ -170,41 +170,45 @@ footer {
 	margin: 5px;
 }
 
-.profile-update{
+.profile-update {
 	width: 90%;
-	margin: 0 auto
+	margin: 0 auto;
 }
 
-.profile-update input[type=text]{
+.profile-update input[type='text'] {
 	border: none;
-	border-bottom: 1px solid #e3e3e3;
+	border-bottom: 1px solid #b1b1b1;
 	padding-left: 10px;
 	width: 50%;
 }
 
-.profile-update select{
+.profile-update select {
 	border: none;
-	border-bottom: 1px solid #e3e3e3;
+	border-bottom: 1px solid #b1b1b1;
 	padding-left: 10px;
 	padding: 3px;
 	background: transparent;
 }
 
-.form-two{
+.form-two {
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 25px;
 }
 
+.card {
+	border-color: #b1b1b1;
+}
+
 /* Cities */
 
-.city-container{
+.city-container {
 	display: flex;
 	width: 90vw;
 	margin: 25px auto;
 }
 
-.city-list{
+.city-list {
 	width: 25vw;
 	background: var(--dark);
 	display: flex;
@@ -215,7 +219,7 @@ footer {
 	height: 80vh;
 }
 
-.city-link{
+.city-link {
 	background: var(--main);
 	padding: 15px;
 	border-radius: 10px;
@@ -225,47 +229,47 @@ footer {
 	margin: 25px 0;
 }
 
-.city-link:hover{
+.city-link:hover {
 	background: var(--main-hover);
 	color: var(--light);
 	text-decoration: none;
 }
 
-.active-city{
+.active-city {
 	width: 50vw;
 	height: 80vh;
 }
 
-.city-image{
+.city-image {
 	width: 60%;
 }
 
-.city-info{
+.city-info {
 	display: flex;
 	justify-content: space-between;
 }
 
-.round{
+.round {
 	border-radius: 50%;
 	float: right;
 	margin-top: 25px;
 }
 
-.posts{
+.posts {
 	clear: both;
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    margin-top: 14%;
-    height: 39%;
+	display: flex;
+	flex-direction: column;
+	overflow-y: scroll;
+	margin-top: 14%;
+	height: 39%;
 }
 
-.inner-post{
+.inner-post {
 	display: flex;
 	margin: 12.5px 0;
 }
 
-.inner-post .user-image img{
+.inner-post .user-image img {
 	margin: 0;
 	margin-right: 15px;
 	width: 75px;

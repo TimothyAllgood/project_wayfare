@@ -15,10 +15,12 @@
         {% load static %}
         <img class="city-image" src="{% static "images/"%}{{city.name|cut:' '|lower}}.jpg" alt="">
     </div>
-    <button type="button" class="btn btn-primary nav-item round" data-toggle="modal" data-target="#loginModal">
-            +
-    </button>
-    <div class="modal" tabindex="-1" role="dialog" id="loginModal">
+    {% if user.is_authenticated %}
+        <button type="button" class="btn btn-primary nav-item round" data-toggle="modal" data-target="#postModal">
+                +
+        </button>
+    {% endif %}
+    <div class="modal" tabindex="-1" role="dialog" id="postModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -52,7 +54,7 @@
                 </div>
                 <div class="post-info">
                     <a href="{% url 'posts' post.id%}">{{post.title}}</a>
-                    <p>{{post.content}}</p>
+                    <p>{{post.content|slice:"0:74"}} <a href="{% url 'posts' post.id%}">Read More...</a></p>
                 </div>
             </div>
             {% endfor %}
