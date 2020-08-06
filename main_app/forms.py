@@ -38,7 +38,7 @@ class AvatarUploadForm(forms.ModelForm):
 
 class PostForm(forms.ModelForm):
     title = forms.CharField(max_length=25, required=True)
-    content = forms.CharField(max_length=1000, required=True)
+    content = forms.CharField(max_length=1000, required=True, widget=forms.Textarea)
     
     class Meta:
         model = Post

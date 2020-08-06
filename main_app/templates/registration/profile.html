@@ -9,35 +9,48 @@
                     <img src="https://picsum.photos/150" class="rounded-circle" width="150", height="150">
                 {% endif  %}
             </div>
-            <div class="card-body">
+            <div class="card-body profile-info">
                 <h3>My Profile</h3>
-                <form method="post" enctype="multipart/form-data">
+                <form method="post" enctype="multipart/form-data" class="profile-update">
                     {% csrf_token %}
-                    <div class="form-group">
-                        <label for="username"><p>Username:</p></label>
+                    <div class="form-group form-two">
                         <input type="text" name='username' placeholder='Username' value="{{user.username}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="city"><p>Current City:</p></label>
                         {{ form.city }}
                     </div>
                     <div class="form-group">
-                        <label for="avatar"><p>Profile Image:</p></label>
                         {{ form.avatar}}
                     </div>
                     <input type="submit" value="Update Profile">
                 </form>
             </div>
         </section>
-        <section class="user-posts card">
-            <h4 class="city-posts">{{ user.profile.get_city_display }} Posts</h4>
-            <h1>{{logged_user.post_set.all}}</h1>
-            {% for post in posts %}
-            <div class= "card-body">
-                <img src="https://picsum.photos/150" class="rounded-circle" width="50px", height="50px">
-                <a  href="{% url 'posts' post.id %}">{{ post.title }}</a>
+        <section class="user-posts">
+            <div class="card profile-posts">
+                <h4 class="city-posts">Your Posts</h4>
+                {% for post in posts %}
+                    <div class= "card-body inner-profile-post">
+                        <img src="{{ user.profile.avatar.url }}" class="rounded-circle" width="50px", height="50px">
+                        <div class="inner-profile-post-info">
+                        <a  href="{% url 'posts' post.id %}">{{ post.title }}</a>
+                        <p>{{post.content}}</p>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-            {% endfor %}
+            <div class="card profile-posts">
+                <h4 class="city-posts">Posts from {{user.profile.get_city_display}}</h4>
+                {% for post in posts %}
+                    {% if  post.city.name == user.profile.get_city_display%}
+                    <div class= "card-body inner-profile-post">
+                        <img src="{{ post.user.profile.avatar.url }}" class="rounded-circle" width="50px", height="50px">
+                        <div class="inner-profile-post-info">
+                        <a  href="{% url 'posts' post.id %}">{{ post.title }}</a>
+                        <p>{{post.content}}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
         <p class="user-city" style="display:none">{{user.profile.city}}</p>
         </section>
     </div>
