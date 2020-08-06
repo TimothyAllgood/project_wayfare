@@ -13,7 +13,7 @@
     <div class="city-info">
         <h3>{{city.name}}</h3>
         {% load static %}
-        <img class="city-image" src="{% static "images/"%}{{city.name|cut:' '|lower}}.jpg" alt="">
+        <img class="city-image" src="{% static "images/"%}{{city.name|cut:' '|lower}}.jpg" onerror="this.src = 'https://picsum.photos/1280/720';" alt="">
     </div>
     {% if user.is_authenticated %}
         <button type="button" class="btn btn-primary nav-item round" data-toggle="modal" data-target="#postModal">
@@ -40,27 +40,29 @@
             </div>
         </div>
     </div>
-    <div class="posts">
+    <div style="margin-top: 30px;">
         <h3>Posts</h3>
-        {% if city.post_set.all %}
-            {% for post in city.post_set.all %}
-            <div class="inner-post">
-                <div class="user-image">
-                {% if post.user.profile.avatar.url %}
-                    <img src="{{post.user.profile.avatar.url}}" class="rounded-circle" alt="">
-                {% else %}
-                    <img src="https://picsum.photos/150" class="rounded-circle" alt="">
-                {% endif %}
+        <div class="posts">
+            {% if city.post_set.all %}
+                {% for post in city.post_set.all %}
+                <div class="inner-post">
+                    <div class="user-image">
+                    {% if post.user.profile.avatar.url %}
+                        <img src="{{post.user.profile.avatar.url}}" class="rounded-circle" alt="">
+                    {% else %}
+                        <img src="https://picsum.photos/150" class="rounded-circle" alt="">
+                    {% endif %}
+                    </div>
+                    <div class="post-info">
+                        <a href="{% url 'posts' post.id%}">{{post.title}}</a>
+                        <p>{{post.content|slice:"0:74"}} <a href="{% url 'posts' post.id%}">Read More...</a></p>
+                    </div>
                 </div>
-                <div class="post-info">
-                    <a href="{% url 'posts' post.id%}">{{post.title}}</a>
-                    <p>{{post.content|slice:"0:74"}} <a href="{% url 'posts' post.id%}">Read More...</a></p>
-                </div>
-            </div>
-            {% endfor %}
-        {% else %}
-            <h3>No Posts Yet</h3>
-        {% endif %}
+                {% endfor %}
+            {% else %}
+                <h3>No Posts Yet</h3>
+            {% endif %}
+        </div>
     </div>
 </section>
 </main>

@@ -12,7 +12,7 @@
 
 body {
 	font-family: 'Montserrat', sans-serif;
-	background-color: var(--light);
+	background-color: #daece7;
 }
 
 .helptext {
@@ -77,7 +77,7 @@ h3 {
 
 .card-container {
 	display: flex;
-	justify-content: center;
+	justify-content: space-evenly;
 	align-items: center;
 }
 
@@ -88,6 +88,10 @@ footer {
 	bottom: 0;
 	width: 100vw;
 	text-align: center;
+}
+
+footer p {
+	margin-bottom: 0;
 }
 
 /* Profile */
@@ -203,6 +207,7 @@ footer {
 /* Cities */
 
 .city-container {
+	height: 100%;
 	display: flex;
 	width: 90vw;
 	margin: 25px auto;
@@ -217,6 +222,7 @@ footer {
 	align-items: center;
 	padding: 25px;
 	height: 80vh;
+	overflow-y: scroll;
 }
 
 .city-link {
@@ -226,7 +232,7 @@ footer {
 	width: 80%;
 	text-align: center;
 	color: var(--light);
-	margin: 25px 0;
+	margin-top: 15px;
 }
 
 .city-link:hover {
@@ -241,12 +247,22 @@ footer {
 }
 
 .city-image {
-	width: 60%;
+	min-width: 100%;
+	height: 30vh;
+	object-fit: cover;
 }
 
 .city-info {
+	position: relative;
 	display: flex;
 	justify-content: space-between;
+}
+.city-info h3 {
+	position: absolute;
+	color: var(--light);
+	top: 10px;
+	left: 30px;
+	text-shadow: 1px 2px 1px var(--dark);
 }
 
 .round {
@@ -256,12 +272,10 @@ footer {
 }
 
 .posts {
-	clear: both;
 	display: flex;
 	flex-direction: column;
 	overflow-y: scroll;
-	margin-top: 14%;
-	height: 39%;
+	height: 42vh;
 }
 
 .inner-post {
