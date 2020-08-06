@@ -1,0 +1,1 @@
+$('#signupModal').modal('show');

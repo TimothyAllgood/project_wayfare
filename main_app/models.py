@@ -24,6 +24,14 @@ class Profile(models.Model):
         default=CITIES[0][0]
         )
 
+class Post(models.Model):
+    title = models.CharField(max_length=25)
+    content = models.TextField(max_length=1000)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
+
+
+
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, created, **kwargs):
     if created:

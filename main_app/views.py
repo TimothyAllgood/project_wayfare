@@ -1,31 +1,20 @@
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .forms import SignUpForm, AvatarUploadForm
-from .models import Profile, City
+from .forms import SignUpForm, AvatarUploadForm, PostForm
+from .models import Profile, City, Post
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-
-# Temp Post Data
-class Post:
-    def __init__(self, title, content, author, id):
-        self.title = title
-        self.content = content
-        self.author = author
-        self.id = id
-
-posts = [
-    Post('Travellers guide', 'content', 'auth name', 0),
-    Post('Top Cities', 'content', 'auth name', 1),
-    Post('Best Dining While Travelling', 'content', 'auth name', 2),
-]
-
 
 # Create your views here.
 def home(request):
     signup_form = SignUpForm()
     login_form = AuthenticationForm()
-    context = {'signup_form': signup_form, 'login_form': login_form,}
+    if request.user.is_authenticated:
+        if 'error_message' in request.session:
+            del request.session['error_message']
+            return redirect('profile')
+    context = {'signup_form': signup_form, 'login_form': login_form}
     return render(request, 'home.html', context)
 
 def signup(request):
@@ -43,9 +32,11 @@ def signup(request):
             user.save()
     # This is how we log a user in via code
             login(request, user)
-            return redirect('home')
+            if 'error_message' in request.session:
+                del request.session['error_message']
+            return redirect('profile')
         else:
-            error_message = 'Invalid sign up - try again'
+            request.session['error_message'] = 'Invalid sign up - try again'
             return redirect('home')
   # A bad POST or a GET request, so render signup.html with an empty form
     else:
@@ -55,27 +46,50 @@ def signup(request):
 
 @login_required
 def profile(request):
-    
     user = request.user
     logged_user = User.objects.get(username=user)
     instance = get_object_or_404(Profile, user=user)
+    posts = logged_user.post_set.all()
     if request.method == "POST":
         form = AvatarUploadForm(request.POST, request.FILES, instance=instance)
         if form.is_valid():
             logged_user.username = request.POST['username']
-            logged_user.save()
-            form.save()
+            if User.objects.filter(username = request.POST['username']).exists():
+                return redirect('/profile')
+            else:
+                logged_user.save()
+                form.save()
+                return redirect('/profile')
+        else:
             return redirect('/profile')
     form = AvatarUploadForm()
-    return render(request, 'registration/profile.html', {'form': form, 'posts': posts})
+    return render(request, 'registration/profile.html', {'form': form, 'logged_user': 'logged_user', 'posts': posts})
 
 def get_posts(request, post_id):
-    post = posts[post_id]
-    return render(request, 'post.html', {'post': post})
+    post = Post.objects.get(id=post_id)
+    author = User.objects.get(id=post.user_id)
+    context = {'post': post, 'author': author}
+    return render(request, 'post.html', context)
 
 
 def city_index(request):
     cities = City.objects.all()
     context = {'cities': cities}
-    return render(request, 'cities/city_base.html', context)
+    return redirect('city_detail', 1)
+
+def city_detail(request, city_id):
+    cities = City.objects.all()
+    city = City.objects.get(id=city_id)
+    form = PostForm(request.POST)
+    user = request.user
+    if request.method == 'POST':
+        logged_user = User.objects.get(username=user) 
+        new_post = form.save(commit=False)
+        new_post.city_id =  city_id
+        new_post.user_id =  logged_user.id
+        new_post.save()
+        return redirect('city_detail', city_id)
+    else:
+        context = {'cities': cities, 'city': city, "form": form, }
+        return render(request, 'cities/city.html', context)
     

@@ -3,7 +3,7 @@
 
 <section class="city-list">
     {% for city in cities %}
-    <a href="#">{{city.name}}</a>
+    <a href="{% url 'city_detail' city.id %}">{{city.name}}</a>
     {% endfor %}
 </section>
 
