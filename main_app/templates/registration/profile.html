@@ -4,7 +4,9 @@
         <section class="profile-info card">
             <div class="user-img">
                 {% if user.profile.avatar.url %}
+                <button style="border:none; background: none" data-toggle="modal" data-target="#imgModal">
                     <img src="{{ user.profile.avatar.url }}" class="rounded-circle" width="150", height="150">
+                </button>
                 {% else %}
                     <img src="https://picsum.photos/150" class="rounded-circle" width="150", height="150">
                 {% endif  %}
@@ -17,10 +19,26 @@
                         <input type="text" name='username' placeholder='Username' value="{{user.username}}">
                         {{ form.city }}
                     </div>
-                    <div class="form-group">
-                        {{ form.avatar}}
-                        <img id="image" class="rounded-circle" width="150", height="150"/>
-                    </div>
+                        <div class="modal" tabindex="-1" role="dialog" id="imgModal">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Update Profile Image</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                     <div class="form-group">
+                                        {{ form.avatar}}
+                                        <img id="image" class="rounded-circle" width="150", height="150"/>
+                                      </div>
+                                      <input type="submit" value="Update Image">
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                   
                     <input type="submit" value="Update Profile">
                 </form>
             </div>
