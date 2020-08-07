@@ -13,7 +13,8 @@
 
 body {
 	font-family: 'Montserrat', sans-serif;
-	background-color: var(--light);
+	/*background-color: var(--light);*/
+	background-color: #84c5bd;
 	overflow-x: hidden;
 }
 
@@ -448,4 +449,9 @@ footer p {
 
 .card {
 	background-color: var(--white);
+}
+
+.green-title {
+	background-color: var(--dark);
+	color: var(--light);
 }

@@ -2,6 +2,9 @@
 {% block content %}
     <div class="profile-container">
         <section class="profile-info card">
+            <div class="green-title" style="display: flex; justify-content: center; padding: 17.5px 0; align-items: center;">
+            <h3>My Profile</h3>
+            </div>
             <div class="user-img">
                 {% if user.profile.avatar.url %}
                 <button style="border:none; background: none" data-toggle="modal" data-target="#imgModal">
@@ -12,7 +15,7 @@
                 {% endif  %}
             </div>
             <div class="card-body profile-info">
-                <h3>My Profile</h3>
+            
                 <form method="post" enctype="multipart/form-data" class="profile-update">
                     {% csrf_token %}
                     <div class="form-group form-two">
@@ -57,7 +60,9 @@
         </section>
         <section class="user-posts">
             <div class="card profile-posts">
-                <h4 class="city-posts">Your Posts</h4>
+                <div class="green-title">
+                <h4 class="city-posts">My Posts</h4>
+                </div>
                 {% for post in posts %}
                     {% if forloop.counter0|divisibleby:2 %}
                         <div class="post-page">
@@ -91,6 +96,7 @@
                 {% endif %}
             </div>
             <div class="card profile-posts">
+                <div class="green-title">
                 <h4 class="city-posts">Posts from {{user.profile.get_city_display}}</h4>
                 {% for city_post in city_posts %}
                      {% if forloop.counter0|divisibleby:2 %}
