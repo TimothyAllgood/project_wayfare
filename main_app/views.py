@@ -52,7 +52,14 @@ def profile(request):
     instance = get_object_or_404(Profile, user=user)
     posts = logged_user.post_set.all()
     bio = logged_user.profile.bio;
-    print(bio)
+
+    city_posts = []
+    for post in posts:
+        if  post.city.name == logged_user.profile.get_city_display():
+            city_posts.append(post)
+
+    print(city_posts)
+
     if request.method == "POST":
         form = AvatarUploadForm(request.POST, request.FILES, instance=instance)
         if form.is_valid():
@@ -66,7 +73,7 @@ def profile(request):
         else:
             return redirect('/profile')
     form = AvatarUploadForm()
-    return render(request, 'registration/profile.html', {'form': form, 'logged_user': 'logged_user', 'posts': posts})
+    return render(request, 'registration/profile.html', {'form': form, 'logged_user': 'logged_user', 'posts': posts, 'city_posts': city_posts})
 
 def get_posts(request, post_id):
     posts = Post.objects.all()

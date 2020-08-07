@@ -32,9 +32,11 @@ if (posts.length < 2) {
 	pageCounter.style.display = 'none';
 }
 
-if (cityPosts.length < 2) {
-	cityNext.style.display = 'none';
-	cityPageCounter.style.display = 'none';
+if (cityPosts.length) {
+	if (cityPosts.length < 2) {
+		cityNext.style.display = 'none';
+		cityPageCounter.style.display = 'none';
+	}
 }
 
 let i = 0;
@@ -76,13 +78,14 @@ pageCounter.addEventListener('click', (e) => {
 });
 
 // City
-for (let i = 0; i < posts.length; i++) {
+for (let i = 0; i < cityPosts.length; i++) {
 	cityPageCounter.insertAdjacentHTML('beforeend', `<a href="#">${i + 1}</a>`);
 }
 
 cityPrevious.style.display = 'none';
 
 cityPosts[0].classList.add('active-page');
+
 let j = 0;
 cityNext.addEventListener('click', (e) => {
 	cityPrevious.style.display = 'flex';

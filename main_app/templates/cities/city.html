@@ -13,7 +13,7 @@
     <div class="city-info">
         <h3>{{city.name}}</h3>
         {% load static %}
-        <img class="city-image" src="{% static "images/"%}{{city.name|cut:' '|lower}}.jpg" onerror="this.src = 'https://picsum.photos/1280/720';" alt="">
+        <img class="city-image" src="{% static "images/"%}{{city.name|cut:' '|lower}}.jpg" onerror="this.src = 'https://source.unsplash.com/1600x900/?{{city.name|cut:' '|lower}},iconic';" alt="">
     </div>
     {% if user.is_authenticated %}
         <button type="button" class="btn btn-primary nav-item round" data-toggle="modal" data-target="#postModal">
@@ -31,7 +31,7 @@
                 </div>
             <div class="modal-body">
                     <!-- Add the login form -->
-                <form action="" method='post'>
+                <form action="" method='post' id="js-post-form">
                     {% csrf_token %}
                     {{form.as_p}}
                     <input type="submit" value="Add Post">
