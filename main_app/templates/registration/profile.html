@@ -92,39 +92,38 @@
             </div>
             <div class="card profile-posts">
                 <h4 class="city-posts">Posts from {{user.profile.get_city_display}}</h4>
-                {% for post in posts %}
-                    {% if  post.city.name == user.profile.get_city_display%}
+                {% for city_post in city_posts %}
                      {% if forloop.counter0|divisibleby:2 %}
                         <div class="city-post-page">
                     {% endif %}
                     <div class= "card-body inner-profile-post">
-                        <img src="{{ post.user.profile.avatar.url }}" class="rounded-circle" width="50px", height="50px">
-                        <div class="inner-profile-post-info">
-                        <a href="{% url 'posts' post.id%}">{{post.title}}</a>
-                        {% if post.content|length > 45 %}
-                        <p>{{post.content|slice:"0:44"}} <a href="{% url 'posts' post.id%}">Read More...</a></p>
+                        <img src="{{ city_post.user.profile.avatar.url }}" class="rounded-circle" width="50px", height="50px">
+                        <div class="inner-profile-city_-info">
+                        <a href="{% url 'posts' city_post.id%}">{{city_post.title}}</a>
+                        {% if city_post.content|length > 45 %}
+                        <p>{{city_post.content|slice:"0:44"}} <a href="{% url 'posts' city_post.id%}">Read More...</a></p>
                         {% else %}
-                            <p>{{post.content}}</p>
+                            <p>{{city_post.content}}</p>
                         {% endif %}
                         </div>
                     </div>
-                    {% if forloop.counter|divisibleby:2 and forloop.counter0 != 0 or forloop.last and posts|length > 0%}
+                    {% if forloop.counter|divisibleby:2 and forloop.counter0 != 0 or forloop.last and city_posts|length > 0%}
                         </div>
                     {% endif %}
-                    {% if forloop.last %}
+                {% endfor %}
+                {% if city_posts|length > 0 %}
                          <div class="page-btn">
                             <a class="city-previous button">Previous</a>
                             <div class="city-page-counter">
                             </div>
                             <a class="city-next button">Next</a>
                         </div>
-                    {% endif %}
-                    {% endif %}
-                {% endfor %}
-               
+               {% endif %}
             </div>
         <p class="user-city" style="display:none">{{user.profile.city}}</p>
         </section>
+
+
     </div>
     {% comment %} {{user.username}}
     {{user.date_joined}}
