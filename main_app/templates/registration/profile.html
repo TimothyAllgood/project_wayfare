@@ -20,12 +20,12 @@
                         {{ form.city }}
                     </div>
                     <div class="user-bio">
-                    <div class="bio" style="opacity:0; position: absolute; z-index=-9999;">
-                        {{user.profile.bio}}
-                    </div>    
-                    <div class="bio-form">
-                        {{form.bio}}
-                    </div>
+                        <div class="bio" style="opacity:0; position: absolute; z-index=-9999;">
+                            {{user.profile.bio}}
+                        </div>    
+                        <div class="bio-form">
+                            {{form.bio}}
+                        </div>
                     </div>
                     <div class="custom-control custom-switch">
                     {{form.dark_mode}}
@@ -77,16 +77,18 @@
                         {% endif %}
                         </div>
                     </div>
-                {% if forloop.counter|divisibleby:2 and forloop.counter0 != 0 or forloop.last %}
+                {% if forloop.counter|divisibleby:2 and forloop.counter0 != 0 or forloop.last and posts|length > 0%}
                         </div>
                     {% endif %}
                 {% endfor %}
+                {% if posts|length > 0 %}
                  <div class="page-btn">
                     <a class="previous button">Previous</a>
                     <div class="page-counter">
                     </div>
                     <a class="next button">Next</a>
                 </div>
+                {% endif %}
             </div>
             <div class="card profile-posts">
                 <h4 class="city-posts">Posts from {{user.profile.get_city_display}}</h4>
@@ -106,17 +108,20 @@
                         {% endif %}
                         </div>
                     </div>
-                    {% endif %}
-                    {% if forloop.counter|divisibleby:2 and forloop.counter0 != 0 or forloop.last %}
+                    {% if forloop.counter|divisibleby:2 and forloop.counter0 != 0 or forloop.last and posts|length > 0%}
                         </div>
                     {% endif %}
+                    {% if forloop.last %}
+                         <div class="page-btn">
+                            <a class="city-previous button">Previous</a>
+                            <div class="city-page-counter">
+                            </div>
+                            <a class="city-next button">Next</a>
+                        </div>
+                    {% endif %}
+                    {% endif %}
                 {% endfor %}
-                <div class="page-btn">
-                    <a class="city-previous button">Previous</a>
-                    <div class="city-page-counter">
-                    </div>
-                    <a class="city-next button">Next</a>
-                </div>
+               
             </div>
         <p class="user-city" style="display:none">{{user.profile.city}}</p>
         </section>
