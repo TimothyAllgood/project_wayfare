@@ -1,11 +1,10 @@
 /* Colors */
 :root {
-	--dark: #282b28;
+	--white: #e3e3e3;
+	--dark: #3e5641;
 	--main: #d36135;
 	--main-hover: #a24936;
-	--light: #101010;
-	--border: blue;
-	--white: #e3e3e3;
+	--light: #f1f1f1;
 }
 
 * {
@@ -206,6 +205,28 @@ footer p {
 	border-color: #b1b1b1;
 }
 
+/* User Bio */
+.user-bio {
+	position: relative;
+}
+
+/* .bio-form {
+	position: absolute;
+	top: 0;
+	left: 0;
+} */
+
+.bio-form textarea {
+	width: 100%;
+	resize: none;
+	height: 100%;
+	background: var(--white);
+	border: none;
+	border-bottom: 1px solid #b1b1b1;
+	padding-left: 10px;
+	padding-top: 5px;
+}
+
 /* Cities */
 
 .city-container {
@@ -268,7 +289,7 @@ footer p {
 	text-shadow: 1px 2px 1px var(--dark);
 }
 
-.post-title{
+.post-title {
 	margin-left: 25px;
 }
 
@@ -313,11 +334,11 @@ footer p {
 	color: var(--light);
 }
 
-.post-list{
+.post-list {
 	overflow: hidden;
 }
 
-.posts-list-items{
+.posts-list-items {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
@@ -325,22 +346,23 @@ footer p {
 	display: none;
 }
 
-.active-post-list{
+.active-post-list {
 	display: flex;
 }
 
-.post-content{
+.post-content {
 	padding-top: 25px;
-    padding-left: 25px;
+	padding-left: 25px;
 }
 
-.post-btn-container{
+.post-btn-container {
 	display: flex;
 	justify-content: center;
 	width: 100%;
 }
 
-.post-btn, .previous-post-btn{
+.post-btn,
+.previous-post-btn {
 	background: var(--main);
 	padding: 15px;
 	border-radius: 10px;
@@ -350,24 +372,25 @@ footer p {
 	margin-top: 15px;
 }
 
-.post-btn:hover, .previous-post-btn:hover{
+.post-btn:hover,
+.previous-post-btn:hover {
 	background: var(--main-hover);
 	color: var(--white);
 	text-decoration: none;
 }
 
-
 /* PAGINATION */
 
-.post-page, .city-post-page{
+.post-page,
+.city-post-page {
 	display: none;
 }
 
-.active-page{
+.active-page {
 	display: initial;
 }
 
-.page-btn{
+.page-btn {
 	display: flex;
 	width: 100%;
 	align-items: center;
@@ -376,11 +399,11 @@ footer p {
 	bottom: 15px;
 }
 
-.page-btn a{
-	height:31px;
+.page-btn a {
+	height: 31px;
 	margin-top: -1px;
 	padding: 5px 10px;
-	background:var(--main);
+	background: var(--main);
 	border: 1px solid var(--main);
 	color: var(--white);
 	margin: 0 2.5px;
@@ -388,17 +411,17 @@ footer p {
 	border-radius: 5px;
 }
 
-.page-btn a:hover{
+.page-btn a:hover {
 	background: var(--main-hover);
 	color: var(--white);
 	text-decoration: none;
 }
 
-.page-btn .button{
+.page-btn .button {
 	display: flex;
 	align-items: center;
 }
 
-.card{
+.card {
 	background-color: var(--white);
 }

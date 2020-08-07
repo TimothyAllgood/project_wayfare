@@ -29,9 +29,11 @@ class Profile(models.Model):
         choices=CITIES,
         default=CITIES[0][0]
         )
+    dark_mode = models.BooleanField()
+    bio = models.CharField(max_length=1000)
 
 class Post(models.Model):
-    title = models.CharField(max_length=200,)
+    title = models.CharField(max_length=200)
     content = models.TextField(max_length=1000)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE)

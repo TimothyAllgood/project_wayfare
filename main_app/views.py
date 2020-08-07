@@ -51,6 +51,8 @@ def profile(request):
     logged_user = User.objects.get(username=user)
     instance = get_object_or_404(Profile, user=user)
     posts = logged_user.post_set.all()
+    bio = logged_user.profile.bio;
+    print(bio)
     if request.method == "POST":
         form = AvatarUploadForm(request.POST, request.FILES, instance=instance)
         if form.is_valid():

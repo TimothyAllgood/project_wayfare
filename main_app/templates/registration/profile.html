@@ -19,6 +19,18 @@
                         <input type="text" name='username' placeholder='Username' value="{{user.username}}">
                         {{ form.city }}
                     </div>
+                    <div class="user-bio">
+                    <div class="bio" style="opacity:0; position: absolute; z-index=-9999;">
+                        {{user.profile.bio}}
+                    </div>    
+                    <div class="bio-form">
+                        {{form.bio}}
+                    </div>
+                    </div>
+                    <div class="custom-control custom-switch">
+                    {{form.dark_mode}}
+                    <label class="custom-control-label" for="customSwitch1">Toggle Dark Mode</label>
+                    </div>
                         <div class="modal" tabindex="-1" role="dialog" id="imgModal">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -30,7 +42,7 @@
                                 </div>
                                 <div class="modal-body">
                                      <div class="form-group">
-                                        {{ form.avatar}}
+                                        {{ form.avatar }}
                                         <img id="image" class="rounded-circle" width="150", height="150"/>
                                       </div>
                                       <input type="submit" value="Update Image">
@@ -38,7 +50,7 @@
                                 </div>
                             </div>
                             </div>
-                   
+                    
                     <input type="submit" value="Update Profile">
                 </form>
             </div>
@@ -125,8 +137,14 @@
 
     // read the image file as a data URL.
     reader.readAsDataURL(this.files[0]);
-};
+    };
     </script>
-
+    
+    {% if user.profile.dark_mode %}
+        <script>
+            const switchEl = document.getElementById('customSwitch1');
+            switchEl.checked = true;
+        </script>
+    {% endif %}
 
 {% endblock content %}
