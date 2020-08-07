@@ -5,3 +5,18 @@
 	--light: #101010;
 	--white: #e3e3e3;
 }
+
+.card-left,
+.card-center,
+.card-right {
+	background-color: var(--white);
+	color: var(--dark);
+}
+
+body > main > h3 {
+	color: var(--white) !important;
+}
+
+footer {
+	color: var(--white);
+}
