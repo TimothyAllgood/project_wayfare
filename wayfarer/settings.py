@@ -15,6 +15,7 @@ import cloudinary
 import environ
 import os
 import django_heroku
+import dj_database_url
 
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
