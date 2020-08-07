@@ -98,6 +98,7 @@
             <div class="card profile-posts">
                 <div class="green-title">
                 <h4 class="city-posts">Posts from {{user.profile.get_city_display}}</h4>
+                </div>
                 {% for city_post in city_posts %}
                      {% if forloop.counter0|divisibleby:2 %}
                         <div class="city-post-page">
