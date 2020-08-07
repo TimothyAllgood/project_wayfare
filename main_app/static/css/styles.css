@@ -7,6 +7,14 @@
 	--light: #f1f1f1;
 }
 
+.shadows {
+	box-shadow: 1px 2px 1px black;
+}
+.shadows:hover {
+	box-shadow: 1px 1px 1px black;
+
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -16,6 +24,17 @@ body {
 	/*background-color: var(--light);*/
 	background-color: #84c5bd;
 	overflow-x: hidden;
+	background-color: #a4c5bd;
+}
+.logo-text {
+	text-shadow: 1px 1px 1px black;
+}
+.logo-text:hover {
+	text-decoration: none;
+	color: #c2bfbf
+}
+.text-shadow{
+	text-shadow: 1px 1px 1px black;
 }
 
 .helptext {
@@ -173,6 +192,9 @@ footer p {
 	flex-direction: column;
 	justify-content: center;
 }
+.profile-container .card {
+	border-radius: 10px!important;
+}
 
 .user-posts {
 	display: flex;
@@ -279,12 +301,16 @@ footer p {
 	text-align: center;
 	color: var(--white);
 	margin-top: 15px;
+	box-shadow: 1px 2px 1px black;
+
 }
 
 .city-link:hover {
 	background: var(--main-hover);
 	color: var(--white);
 	text-decoration: none;
+	box-shadow: 1px 1px 1px black;
+
 }
 
 .active-city {
@@ -335,6 +361,10 @@ footer p {
 .inner-post {
 	display: flex;
 	margin: 12.5px 0;
+	border-bottom: 1px solid black;
+	/* box-shadow: 1px 1px 1px black; */
+	border-radius: 0 0 10px 50px;
+	width: 95%;
 }
 
 .inner-post .user-image img {
@@ -384,17 +414,20 @@ footer p {
 	display: flex;
 	justify-content: center;
 	width: 100%;
+	justify-content: space-evenly;
 }
 
 .post-btn,
 .previous-post-btn {
-	background: var(--main);
+	background: #7c2402;
 	padding: 15px;
 	border-radius: 10px;
 	width: 35%;
 	text-align: center;
 	color: var(--white);
 	margin-top: 15px;
+	box-shadow: 1px 2px 1px black;
+
 }
 
 .post-btn:hover,
@@ -402,6 +435,8 @@ footer p {
 	background: var(--main-hover);
 	color: var(--white);
 	text-decoration: none;
+	box-shadow: 1px 1px 1px black;
+
 }
 
 /* PAGINATION */
@@ -454,4 +489,5 @@ footer p {
 .green-title {
 	background-color: var(--dark);
 	color: var(--light);
+	border-radius: 10px 10px 0 0;
 }

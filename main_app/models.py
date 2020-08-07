@@ -29,7 +29,7 @@ class Profile(models.Model):
         choices=CITIES,
         default=CITIES[0][0]
         )
-    dark_mode = models.BooleanField()
+    dark_mode = models.BooleanField(default=False)
     bio = models.CharField(max_length=1000)
 
 class Post(models.Model):
