@@ -14,6 +14,10 @@ from pathlib import Path
 import cloudinary
 import environ
 import os
+import django_heroku
+
+
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # https://djangocentral.com/environment-variables-in-django/
 
@@ -65,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'wayfarer.urls'
@@ -91,12 +96,9 @@ WSGI_APPLICATION = 'wayfarer.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'wayfarer',
-    }
-}
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+
 
 
 # Password validation
@@ -142,6 +144,14 @@ STATICFILES_DIRS = [
     '/main_app/static/',
 ]
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 LOGIN_REDIRECT_URL = '/profile/'
 
 LOGOUT_REDIRECT_URL = '/'
+
+# This should already be in your settings.py
+django_heroku.settings(locals())
+# This is new
+options = DATABASES['default'].get('OPTIONS', {})
+options.pop('sslmode', None)
