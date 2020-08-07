@@ -35,6 +35,12 @@ def signup(request):
             if 'error_message' in request.session:
                 del request.session['error_message']
             return redirect('profile')
+        elif User.objects.filter(username=request.POST['username']).exists():
+            request.session['error_message'] = 'User already exists!'
+            return redirect('home')    
+        elif request.POST['password1'] != request.POST['password2']:
+            request.session['error_message'] = 'Password Does Not Match'
+            return redirect('home')    
         else:
             request.session['error_message'] = 'Invalid sign up - try again'
             return redirect('home')
