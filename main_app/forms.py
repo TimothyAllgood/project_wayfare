@@ -26,6 +26,8 @@ class SignUpForm(UserCreationForm):
 
 class AvatarUploadForm(forms.ModelForm):
     city = forms.CharField(label='Current City?', widget=forms.Select(choices=CITIES))
+    bio = forms.CharField(max_length=1000, widget=forms.Textarea, required=False,)
+    dark_mode = forms.BooleanField(required=False, widget= forms.CheckboxInput(attrs={'class':'custom-control-input', 'id': 'customSwitch1'}))
     avatar = CloudinaryFileField(
         options = {
             'crop': 'thumb',
@@ -36,7 +38,7 @@ class AvatarUploadForm(forms.ModelForm):
     )
     class Meta:
         model = User
-        fields = ('username', 'avatar', 'city',)
+        fields = ('username', 'avatar', 'city', 'bio', 'dark_mode')
 
 class PostForm(forms.ModelForm):
     title = forms.CharField(max_length=25, required=True)

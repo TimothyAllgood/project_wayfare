@@ -19,6 +19,18 @@
                         <input type="text" name='username' placeholder='Username' value="{{user.username}}">
                         {{ form.city }}
                     </div>
+                    <div class="user-bio">
+                    <div class="bio" style="opacity:0; position: absolute; z-index=-9999;">
+                        {{user.profile.bio}}
+                    </div>    
+                    <div class="bio-form">
+                        {{form.bio}}
+                    </div>
+                    </div>
+                    <div class="custom-control custom-switch">
+                    {{form.dark_mode}}
+                    <label class="custom-control-label" for="customSwitch1">Toggle Dark Mode</label>
+                    </div>
                         <div class="modal" tabindex="-1" role="dialog" id="imgModal">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -30,7 +42,7 @@
                                 </div>
                                 <div class="modal-body">
                                      <div class="form-group">
-                                        {{ form.avatar}}
+                                        {{ form.avatar }}
                                         <img id="image" class="rounded-circle" width="150", height="150"/>
                                       </div>
                                       <input type="submit" value="Update Image">
@@ -38,7 +50,7 @@
                                 </div>
                             </div>
                             </div>
-                   
+                    
                     <input type="submit" value="Update Profile">
                 </form>
             </div>
@@ -47,6 +59,9 @@
             <div class="card profile-posts">
                 <h4 class="city-posts">Your Posts</h4>
                 {% for post in posts %}
+                    {% if forloop.counter0|divisibleby:2 %}
+                        <div class="post-page">
+                    {% endif %}
                     <div class= "card-body inner-profile-post">
                         {% if user.profile.avatar.url %}                        
                         <img src="{{ user.profile.avatar.url }}" class="rounded-circle" width="50px", height="50px">
@@ -62,12 +77,24 @@
                         {% endif %}
                         </div>
                     </div>
+                {% if forloop.counter|divisibleby:2 and forloop.counter0 != 0 or forloop.last %}
+                        </div>
+                    {% endif %}
                 {% endfor %}
+                 <div class="page-btn">
+                    <a class="previous button">Previous</a>
+                    <div class="page-counter">
+                    </div>
+                    <a class="next button">Next</a>
+                </div>
             </div>
             <div class="card profile-posts">
                 <h4 class="city-posts">Posts from {{user.profile.get_city_display}}</h4>
                 {% for post in posts %}
                     {% if  post.city.name == user.profile.get_city_display%}
+                     {% if forloop.counter0|divisibleby:2 %}
+                        <div class="city-post-page">
+                    {% endif %}
                     <div class= "card-body inner-profile-post">
                         <img src="{{ post.user.profile.avatar.url }}" class="rounded-circle" width="50px", height="50px">
                         <div class="inner-profile-post-info">
@@ -80,7 +107,16 @@
                         </div>
                     </div>
                     {% endif %}
+                    {% if forloop.counter|divisibleby:2 and forloop.counter0 != 0 or forloop.last %}
+                        </div>
+                    {% endif %}
                 {% endfor %}
+                <div class="page-btn">
+                    <a class="city-previous button">Previous</a>
+                    <div class="city-page-counter">
+                    </div>
+                    <a class="city-next button">Next</a>
+                </div>
             </div>
         <p class="user-city" style="display:none">{{user.profile.city}}</p>
         </section>
@@ -101,8 +137,14 @@
 
     // read the image file as a data URL.
     reader.readAsDataURL(this.files[0]);
-};
+    };
     </script>
-
+    
+    {% if user.profile.dark_mode %}
+        <script>
+            const switchEl = document.getElementById('customSwitch1');
+            switchEl.checked = true;
+        </script>
+    {% endif %}
 
 {% endblock content %}
