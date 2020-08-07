@@ -81,11 +81,39 @@ h3 {
 	height: 500px;
 }
 
+
+
 .card-container {
 	display: flex;
-	justify-content: space-evenly;
 	align-items: center;
+	justify-content: space-evenly;
+	padding-left: 55px;
+	padding-right: 55px;
+	padding-top: 35px;
 }
+
+.card-left {
+	background-color: #3e5641;
+	color: #f1f1f1;
+	width: 18rem;
+	height: 11.5rem;
+}
+
+.card-center {
+	background-color: #3e5641;
+	color: #f1f1f1;
+	width: 18rem;
+	height: 11.5rem;
+}
+
+.card-right {
+	background-color: #3e5641;
+	color: #f1f1f1;
+	width: 18rem;
+	height: 11.5rem;
+}
+
+
 
 /* Footer */
 footer {
