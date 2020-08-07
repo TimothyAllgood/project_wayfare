@@ -1,9 +1,16 @@
 :root {
-	--dark: #282b28;
+	--dark: #101010;
 	--main: #d36135;
 	--main-hover: #a24936;
-	--light: #101010;
+	--light: #282b28;
 	--white: #e3e3e3;
+}
+body {
+	background-color: var(--light);
+}
+
+.green-title {
+	color: var(--white)
 }
 
 .card-left,
