@@ -41,10 +41,13 @@
         </div>
     </div>
     <div style="margin-top: 30px;">
-        <h3>Posts</h3>
+        <h3 class="post-title">Posts</h3>
         <div class="posts">
             {% if city.post_set.all %}
                 {% for post in city.post_set.all %}
+                {% if forloop.counter0|divisibleby:3 %}
+                        <div class="post-page">
+                    {% endif %}
                 <div class="inner-post">
                     <div class="user-image">
                     {% if post.user.profile.avatar.url %}
@@ -55,14 +58,26 @@
                     </div>
                     <div class="post-info">
                         <a href="{% url 'posts' post.id%}">{{post.title}}</a>
+                        
                         {% if post.content|length > 50 %}
+                        
                         <p>{{post.content|slice:"0:49"}} <a href="{% url 'posts' post.id%}">Read More...</a></p>
                         {% else %}
                         <p>{{post.content}}</p>
                         {% endif %}
                     </div>
+                    {% if forloop.counter|divisibleby:3 and forloop.counter0 != 0 or forloop.last %}
+                        </div>
+                    {% endif %}
+
                 </div>
                 {% endfor %}
+                <div class="page-btn">
+                    <a class="previous button">Previous</a>
+                    <div class="page-counter">
+                    </div>
+                    <a class="next button">Next</a>
+                </div>
             {% else %}
                 <h3>No Posts Yet</h3>
             {% endif %}

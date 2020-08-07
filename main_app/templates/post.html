@@ -1,13 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="city-container">
-    <section class="city-list">
+    <section class="city-list post-list">
         <h2 style="color:#f1f1f1">Posts</h2>
+        <div class="post-btn-container">
+            <a class="previous-post-btn" href="#">More Posts</a>
+        </div>
         {% for one_post in posts %}
+        {% if forloop.counter0|divisibleby:8 %}
+        <div class="posts-list-items">
+        {% endif %}
+        
         <a class="city-link" href="{% url 'posts' one_post.id %}">{{one_post.title}}</a>
+
+        {% if forloop.counter|divisibleby:8 and forloop.counter0 != 0 or forloop.last %}
+        </div>
+        {% endif %}
         {% endfor %}
+        <div class="post-btn-container">
+            <a class="post-btn" href="#">More Posts</a>
+        </div>
     </section>
-    <section class="active-city">
+    <section class="active-city post-content">
         <h2>{{post.title}}</h2>
         <a href="{% url 'city_detail' post.city.id %}">{{post.city.name}}</a>
         <p>By: {{author.username}}</p>
