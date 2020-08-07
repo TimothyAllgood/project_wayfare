@@ -21,7 +21,7 @@ for i, city in enumerate(cities):
     CITIES.append((city.name[0],city.name,),)
 
 class Profile(models.Model):
-    avatar = CloudinaryField('avatar')
+    avatar = CloudinaryField('avatar', default='avatars/default_booysw.jpg')
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     city = models.CharField(
         'City Choice',
@@ -30,7 +30,7 @@ class Profile(models.Model):
         default=CITIES[0][0]
         )
     dark_mode = models.BooleanField(default=False)
-    bio = models.CharField(max_length=1000)
+    bio = models.CharField(max_length=1000, default='Enter Bio')
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
