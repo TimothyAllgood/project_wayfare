@@ -47,6 +47,9 @@
             <div class="card profile-posts">
                 <h4 class="city-posts">Your Posts</h4>
                 {% for post in posts %}
+                    {% if forloop.counter0|divisibleby:2 %}
+                        <div class="post-page">
+                    {% endif %}
                     <div class= "card-body inner-profile-post">
                         {% if user.profile.avatar.url %}                        
                         <img src="{{ user.profile.avatar.url }}" class="rounded-circle" width="50px", height="50px">
@@ -62,12 +65,24 @@
                         {% endif %}
                         </div>
                     </div>
+                {% if forloop.counter|divisibleby:2 and forloop.counter0 != 0 or forloop.last %}
+                        </div>
+                    {% endif %}
                 {% endfor %}
+                 <div class="page-btn">
+                    <a class="previous button">Previous</a>
+                    <div class="page-counter">
+                    </div>
+                    <a class="next button">Next</a>
+                </div>
             </div>
             <div class="card profile-posts">
                 <h4 class="city-posts">Posts from {{user.profile.get_city_display}}</h4>
                 {% for post in posts %}
                     {% if  post.city.name == user.profile.get_city_display%}
+                     {% if forloop.counter0|divisibleby:2 %}
+                        <div class="city-post-page">
+                    {% endif %}
                     <div class= "card-body inner-profile-post">
                         <img src="{{ post.user.profile.avatar.url }}" class="rounded-circle" width="50px", height="50px">
                         <div class="inner-profile-post-info">
@@ -80,7 +95,16 @@
                         </div>
                     </div>
                     {% endif %}
+                    {% if forloop.counter|divisibleby:2 and forloop.counter0 != 0 or forloop.last %}
+                        </div>
+                    {% endif %}
                 {% endfor %}
+                <div class="page-btn">
+                    <a class="city-previous button">Previous</a>
+                    <div class="city-page-counter">
+                    </div>
+                    <a class="city-next button">Next</a>
+                </div>
             </div>
         <p class="user-city" style="display:none">{{user.profile.city}}</p>
         </section>

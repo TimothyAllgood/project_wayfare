@@ -1,9 +1,11 @@
 /* Colors */
 :root {
-	--dark: #3e5641;
+	--dark: #282b28;
 	--main: #d36135;
 	--main-hover: #a24936;
-	--light: #f1f1f1;
+	--light: #101010;
+	--border: blue;
+	--white: #e3e3e3;
 }
 
 * {
@@ -12,7 +14,8 @@
 
 body {
 	font-family: 'Montserrat', sans-serif;
-	background-color: #daece7;
+	background-color: var(--light);
+	overflow-x: hidden;
 }
 
 .helptext {
@@ -134,15 +137,9 @@ footer p {
 
 .card.profile-posts {
 	max-height: 35vh;
+	min-height: 35vh;
 }
 
-.profile-posts {
-	overflow-y: scroll;
-}
-
-.profile-posts .card-body {
-	margin-bottom: 35px;
-}
 .profile-posts:first-child {
 	margin-bottom: 25px;
 }
@@ -186,6 +183,7 @@ footer p {
 .profile-update input[type='text'] {
 	border: none;
 	border-bottom: 1px solid #b1b1b1;
+	background-color: var(--white);
 	padding-left: 10px;
 	width: 50%;
 }
@@ -213,7 +211,7 @@ footer p {
 .city-container {
 	height: 100%;
 	display: flex;
-	width: 90vw;
+	width: 75vw;
 	margin: 25px auto;
 }
 
@@ -222,11 +220,9 @@ footer p {
 	background: var(--dark);
 	display: flex;
 	flex-direction: column;
-	margin-right: 25px;
 	align-items: center;
 	padding: 25px;
 	height: 80vh;
-	overflow-y: scroll;
 }
 
 .city-link {
@@ -235,19 +231,21 @@ footer p {
 	border-radius: 10px;
 	width: 80%;
 	text-align: center;
-	color: var(--light);
+	color: var(--white);
 	margin-top: 15px;
 }
 
 .city-link:hover {
 	background: var(--main-hover);
-	color: var(--light);
+	color: var(--white);
 	text-decoration: none;
 }
 
 .active-city {
 	width: 50vw;
 	height: 80vh;
+	background-color: var(--white);
+	position: relative;
 }
 
 .city-image {
@@ -261,25 +259,31 @@ footer p {
 	display: flex;
 	justify-content: space-between;
 }
+
 .city-info h3 {
 	position: absolute;
-	color: var(--light);
+	color: var(--white);
 	top: 10px;
 	left: 30px;
 	text-shadow: 1px 2px 1px var(--dark);
+}
+
+.post-title{
+	margin-left: 25px;
 }
 
 .round {
 	border-radius: 50%;
 	float: right;
 	margin-top: 25px;
+	margin-right: 25px;
 }
 
 .posts {
 	display: flex;
 	flex-direction: column;
-	overflow-y: scroll;
 	height: 42vh;
+	margin-left: 25px;
 }
 
 .inner-post {
@@ -307,4 +311,94 @@ footer p {
 }
 .bg-danger a {
 	color: var(--light);
+}
+
+.post-list{
+	overflow: hidden;
+}
+
+.posts-list-items{
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 80%;
+	display: none;
+}
+
+.active-post-list{
+	display: flex;
+}
+
+.post-content{
+	padding-top: 25px;
+    padding-left: 25px;
+}
+
+.post-btn-container{
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.post-btn, .previous-post-btn{
+	background: var(--main);
+	padding: 15px;
+	border-radius: 10px;
+	width: 35%;
+	text-align: center;
+	color: var(--white);
+	margin-top: 15px;
+}
+
+.post-btn:hover, .previous-post-btn:hover{
+	background: var(--main-hover);
+	color: var(--white);
+	text-decoration: none;
+}
+
+
+/* PAGINATION */
+
+.post-page, .city-post-page{
+	display: none;
+}
+
+.active-page{
+	display: initial;
+}
+
+.page-btn{
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	bottom: 15px;
+}
+
+.page-btn a{
+	height:31px;
+	margin-top: -1px;
+	padding: 5px 10px;
+	background:var(--main);
+	border: 1px solid var(--main);
+	color: var(--white);
+	margin: 0 2.5px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.page-btn a:hover{
+	background: var(--main-hover);
+	color: var(--white);
+	text-decoration: none;
+}
+
+.page-btn .button{
+	display: flex;
+	align-items: center;
+}
+
+.card{
+	background-color: var(--white);
 }
