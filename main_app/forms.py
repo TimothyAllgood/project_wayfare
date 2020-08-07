@@ -6,11 +6,13 @@ from cloudinary.forms import CloudinaryFileField
 from .models import Profile, Post, City
 
 
-cities = City.objects.all()
+CITIES = (('S', 'San Francisco'))
 
-CITIES = []
-for i, city in enumerate(cities):
-    CITIES.append((city.name[0],city.name,),)
+# cities = City.objects.all()
+
+# CITIES = []
+# for i, city in enumerate(cities):
+#     CITIES.append((city.name[0],city.name,),)
        
 
 class SignUpForm(UserCreationForm):
