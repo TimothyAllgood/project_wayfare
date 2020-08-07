@@ -32,6 +32,7 @@
             <div class="modal-body">
                     <!-- Add the login form -->
                 <form action="" method='post' id="js-post-form">
+                    <p class="bg-warning error-text"></p>
                     {% csrf_token %}
                     {{form.as_p}}
                     <input type="submit" value="Add Post">

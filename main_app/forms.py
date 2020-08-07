@@ -41,8 +41,8 @@ class AvatarUploadForm(forms.ModelForm):
         fields = ('username', 'avatar', 'city', 'bio', 'dark_mode')
 
 class PostForm(forms.ModelForm):
-    title = forms.CharField(max_length=25, required=True)
-    content = forms.CharField(max_length=1000, required=True, widget=forms.Textarea)
+    title = forms.CharField(max_length=205, required=False)
+    content = forms.CharField(max_length=1005, required=False, widget=forms.Textarea)
     
     class Meta:
         model = Post

@@ -13,6 +13,9 @@
 	color: var(--dark);
 }
 
+body {
+}
+
 body > main > h3 {
 	color: var(--white) !important;
 }
