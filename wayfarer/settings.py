@@ -16,11 +16,11 @@ import environ
 import os
 import django_heroku
 import dj_database_url
-import psycopg2
+# import psycopg2
 
-DATABASE_URL = os.environ['DATABASE_URL']
+# DATABASE_URL = os.environ['DATABASE_URL']
 
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -103,7 +103,7 @@ WSGI_APPLICATION = 'wayfarer.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {}
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+
 
 
 
