@@ -158,5 +158,11 @@ LOGOUT_REDIRECT_URL = '/'
 # This should already be in your settings.py
 django_heroku.settings(locals())
 # This is new
-options = DATABASES['default'].get('OPTIONS', {})
-options.pop('sslmode', None)
+DATABASES['default'] = dj_database_url.config()
+if len(DATABASES['default']) == 0:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'wayfarer_test2',
+    }
+}
