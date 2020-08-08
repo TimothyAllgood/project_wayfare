@@ -4,7 +4,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from cloudinary.models import CloudinaryField
 
-CITIES = (('S', 'San Francisco'))
+CITIES = (('S', 'San Francisco'),('L', 'London'),)
 
 
 class City(models.Model):
