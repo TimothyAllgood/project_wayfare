@@ -6,7 +6,7 @@ from cloudinary.forms import CloudinaryFileField
 from .models import Profile, Post, City
 
 
-CITIES = (('S', 'San Francisco'))
+CITIES = (('S', 'San Francisco'),('L', 'London'),)
 
 # cities = City.objects.all()
 
