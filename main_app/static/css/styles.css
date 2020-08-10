@@ -66,9 +66,10 @@ h3 {
 	border-color: var(--main-hover);
 }
 
+
 /* Nav */
 .logged-in .nav-item {
-	margin: 0 10px;
+	margin: 0 7px;
 }
 
 .logged-out .nav-item {
@@ -491,3 +492,35 @@ footer p {
 	color: var(--light);
 	border-radius: 10px 10px 0 0;
 }
+/*
+#PostModal .modal-title {
+	color: #f1f1f1;
+}
+
+#PostModal .modal-body {
+	background-color: #a4c5bd;
+}
+
+#PostModal .modal-header {
+	background-color: #3e5641;
+}
+*/
+
+.modal-content .modal-header {
+	background-color: var(--dark);
+}
+
+.modal-title {
+	color: #f1f1f1;
+}
+.modal-body {
+	background-color: #a4c5bd;
+}
+
+/*
+#js-post-form input {
+	background-color: var(--main);
+	border-color: var(--main);
+}
+
+*/
