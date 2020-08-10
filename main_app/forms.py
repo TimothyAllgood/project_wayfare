@@ -33,6 +33,9 @@ class AvatarUploadForm(forms.ModelForm):
             'crop': 'thumb',
             'width': 200,
             'height': 200,
+
+            'gravity': "face", 
+            'radius': "max",
             'folder': 'avatars'
        }
     )
@@ -47,3 +50,4 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ("title", "content")
+        
