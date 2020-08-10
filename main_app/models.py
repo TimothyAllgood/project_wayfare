@@ -4,8 +4,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from cloudinary.models import CloudinaryField
 
-
-
 class City(models.Model):
     name = models.CharField(
         max_length=250,

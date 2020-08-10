@@ -14,6 +14,16 @@ from pathlib import Path
 import cloudinary
 import environ
 import os
+import django_heroku
+import dj_database_url
+# import psycopg2
+
+# DATABASE_URL = os.environ['DATABASE_URL']
+
+# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+
+
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # https://djangocentral.com/environment-variables-in-django/
 
@@ -65,6 +75,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'wayfarer.urls'
@@ -91,12 +102,9 @@ WSGI_APPLICATION = 'wayfarer.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'wayfarer',
-    }
-}
+DATABASES = {}
+
+
 
 
 # Password validation
@@ -138,10 +146,23 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-    '/main_app/static/',
+    os.path.join(BASE_DIR, "main_app/static")
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGIN_REDIRECT_URL = '/profile/'
 
 LOGOUT_REDIRECT_URL = '/'
+
+# This should already be in your settings.py
+django_heroku.settings(locals())
+# This is new
+DATABASES['default'] = dj_database_url.config()
+if len(DATABASES['default']) == 0:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'wayfarer',
+    }
+}

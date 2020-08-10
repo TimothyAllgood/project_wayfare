@@ -30,3 +30,13 @@ body > main > h3 {
 footer {
 	color: var(--white);
 }
+
+
+
+.modal-header {
+	background-color: var(--dark);
+}
+			
+.modal-body {
+	background-color: var(--light);
+}
