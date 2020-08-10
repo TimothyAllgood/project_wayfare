@@ -25,13 +25,12 @@
     </section>
     <section class="active-city post-content">
         <h2>{{post.title}}</h2>
-        <a href="{% url 'city_detail' post.city.id %}">{{post.city.name}}</a>
-        <p>By: {{author.username}}</p>
+        <p>By: {{author.username}} in <a href="{% url 'city_detail' post.city.id %}">{{post.city.name}}</a></p>
         <hr>
         <p>{{post.content}}</p>
         {% if user.is_authenticated and user.username == author.username %}
-            <button class="btn btn-secondary" data-toggle="modal" data-target="#PostModal">Edit</button>
-            <button class="btn btn-secondary" data-toggle="modal" data-target="#DeleteModal">Delete</button>
+            <button class="btn btn-primary shadows" data-toggle="modal" data-target="#PostModal">Edit</button>
+            <button class="btn btn-primary shadows" data-toggle="modal" data-target="#DeleteModal">Delete</button>
         {% endif %}
         <!-- <a href="{% url 'delete_post' post.id %}">Delete</a> -->
     </section>
@@ -48,7 +47,7 @@
             </div>
             <div class="modal-body">
                 <form action="" method="POST">{% csrf_token %}{{ form.as_p }}
-                    <button type="submit">Update</button>
+                    <button type="submit" class="btn btn-primary shadows">Update</button>
                 </form>
             </div>
         </div>
@@ -67,5 +66,49 @@
             </div>          
         </div>
     </div>
+</div>
+{% comment %} Login Modal {% endcomment %}
+<div class="modal" tabindex="-1" role="dialog" id="loginModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Add the login form -->
+          <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{ login_form.as_p }}
+            <input type="submit" class="btn" value="login">
+            <input type="hidden" name="next" value="{{ next }}">
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% comment %} Sign Up Modal {% endcomment %}
+<div class="modal" tabindex="-1" role="dialog" id="signupModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Sign Up</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% if request.session.error_message %}<p class="alert alert-danger">{{ request.session.error_message }}</p>{% endif %}
+        <form method="post" action="/signup">
+          {% csrf_token %}
+          {{ signup_form.as_p }}
+          <input type="submit" class="btn" value="signup">
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

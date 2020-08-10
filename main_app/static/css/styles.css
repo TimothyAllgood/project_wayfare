@@ -12,7 +12,6 @@
 }
 .shadows:hover {
 	box-shadow: 1px 1px 1px black;
-
 }
 
 * {
@@ -31,9 +30,9 @@ body {
 }
 .logo-text:hover {
 	text-decoration: none;
-	color: #c2bfbf
+	color: #c2bfbf;
 }
-.text-shadow{
+.text-shadow {
 	text-shadow: 1px 1px 1px black;
 }
 
@@ -45,11 +44,19 @@ form ul {
 	display: none;
 }
 
-/* h1,
+h1,
 h2,
 h3 {
 	font-family: 'Merriweather', serif;
-} */
+}
+
+h3 {
+	font-size: 2em;
+}
+
+h2 {
+	font-size: 3em;
+}
 
 /* General */
 .bg-dark {
@@ -68,7 +75,7 @@ h3 {
 
 /* Nav */
 .logged-in .nav-item {
-	margin: 0 10px;
+	margin: 0 7px;
 }
 
 .logged-out .nav-item {
@@ -89,6 +96,14 @@ h3 {
 }
 .carousel-item {
 	text-align: center;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+	width: 50px;
+	height: 50px;
+	background-color: black;
+	padding: 25px;
 }
 
 .img-fluid {
@@ -193,7 +208,7 @@ footer p {
 	justify-content: center;
 }
 .profile-container .card {
-	border-radius: 10px!important;
+	border-radius: 10px !important;
 }
 
 .user-posts {
@@ -263,6 +278,10 @@ footer p {
 	left: 0;
 } */
 
+.bio {
+	min-height: 25px;
+}
+
 .bio-form textarea {
 	width: 100%;
 	resize: none;
@@ -302,7 +321,6 @@ footer p {
 	color: var(--white);
 	margin-top: 15px;
 	box-shadow: 1px 2px 1px black;
-
 }
 
 .city-link:hover {
@@ -310,7 +328,6 @@ footer p {
 	color: var(--white);
 	text-decoration: none;
 	box-shadow: 1px 1px 1px black;
-
 }
 
 .active-city {
@@ -338,6 +355,9 @@ footer p {
 	top: 10px;
 	left: 30px;
 	text-shadow: 1px 2px 1px var(--dark);
+	background-color: rgba(0, 0, 0, 0.6);
+	padding: 5px 10px;
+	font-size: 2em;
 }
 
 .post-title {
@@ -427,7 +447,6 @@ footer p {
 	color: var(--white);
 	margin-top: 15px;
 	box-shadow: 1px 2px 1px black;
-
 }
 
 .post-btn:hover,
@@ -436,7 +455,6 @@ footer p {
 	color: var(--white);
 	text-decoration: none;
 	box-shadow: 1px 1px 1px black;
-
 }
 
 /* PAGINATION */
@@ -490,4 +508,60 @@ footer p {
 	background-color: var(--dark);
 	color: var(--light);
 	border-radius: 10px 10px 0 0;
+}
+/*
+#PostModal .modal-title {
+	color: #f1f1f1;
+}
+
+#PostModal .modal-body {
+	background-color: #a4c5bd;
+}
+
+#PostModal .modal-header {
+	background-color: #3e5641;
+}
+*/
+
+.modal-content .modal-header {
+	background-color: var(--dark);
+}
+
+.modal-title {
+	color: #f1f1f1;
+}
+.modal-body {
+	background-color: #a4c5bd;
+}
+
+/*
+#js-post-form input {
+	background-color: var(--main);
+	border-color: var(--main);
+}
+
+*/
+
+.profile-update {
+}
+
+.profile-update .custom-switch {
+	margin: 25px 0;
+}
+
+.profile-update button {
+	background-color: var(--main);
+	border: none;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+	box-shadow: 1px 2px 1px black;
+	color: white;
+}
+
+.profile-update button:hover {
+	background-color: var(--main-hover);
+	box-shadow: 1px 1px 1px black;
 }
