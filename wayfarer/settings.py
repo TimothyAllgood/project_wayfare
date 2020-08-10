@@ -163,6 +163,6 @@ if len(DATABASES['default']) == 0:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'wayfarer_test2',
+            'NAME': 'wayfarer',
     }
 }
