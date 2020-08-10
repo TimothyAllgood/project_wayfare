@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="city-list">
+    {% for city in cities %}
+    <a href="{% url 'city_detail' city.id %}">{{city.name}}</a>
+    {% endfor %}
+</section>
+
+<section class="active-city">
+    {% block city %}
+
+    {% endblock city %}
+</section>
+{% endblock content %}

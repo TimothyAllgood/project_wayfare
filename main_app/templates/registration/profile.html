@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="profile-container">
+        <section class="profile-info card">
+            <div class="green-title" style="display: flex; justify-content: center; padding: 17.5px 0; align-items: center;">
+            <h3 class="text-shadow">My Profile</h3>
+            </div>
+            <div class="user-img">
+                {% if user.profile.avatar.url %}
+                <button style="border:none; background: none" data-toggle="modal" data-target="#imgModal">
+                    <img src="{{ user.profile.avatar.url }}" class="rounded-circle" width="150", height="150">
+                </button>
+                {% else %}
+                    <img src="https://picsum.photos/150" class="rounded-circle" width="150", height="150">
+                {% endif  %}
+            </div>
+            <div class="card-body profile-info">
+            
+                <form method="post" enctype="multipart/form-data" class="profile-update">
+                    {% csrf_token %}
+                    <div class="form-group form-two">
+                    <div class="inner-form">
+                    <label class="js-form-label" for="username">Username</label>
+                        <input type="text" name='username'\ placeholder='Username' value="{{user.username}}">
+                    </div>
+                    <div class="inner-form">
+                        <label class="city-label js-form-label" for="city">Current City</label>
+                        {{ form.city }}
+                    </div>
+                    </div>
+                    <div class="user-bio">
+                    <div class="inner-form">
+                    <label class="js-form-label" for="bio">Bio</label>
+                        <div class="bio" style="opacity:0; position: absolute; z-index: -9999;">
+                            {{user.profile.bio}}
+                        </div>    
+                        <div class="bio-form">
+                            {{form.bio}}
+                        </div>
+                    </div>
+                    </div>
+                    <div class="custom-control custom-switch">
+                    {{form.dark_mode}}
+                    <label class="custom-control-label" for="customSwitch1">Toggle Dark Mode</label>
+                    </div>
+                        <div class="modal" tabindex="-1" role="dialog" id="imgModal">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Update Profile Image</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                     <div class="form-group">
+                                        {{ form.avatar }}
+                                        <img id="image" class="rounded-circle" width="150", height="150"/>
+                                      </div>
+                                      <button type="submit" value="Update Image">Update Image</button>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                    
+                    <button type="submit" value="Update Profile">Update Profile</button>
+                </form>
+            </div>
+        </section>
+        <section class="user-posts">
+            <div class="card profile-posts">
+                <div class="green-title">
+                <h4 class="city-posts text-shadow">My Posts</h4>
+                </div>
+                {% for post in posts %}
+                    {% if forloop.counter0|divisibleby:2 %}
+                        <div class="post-page">
+                    {% endif %}
+                    <div class= "card-body inner-profile-post">
+                        {% if user.profile.avatar.url %}                        
+                        <img src="{{ user.profile.avatar.url }}" class="rounded-circle" width="50px", height="50px">
+                        {% else %}
+                        <img src="https://picsum.photos/150" class="rounded-circle" width="50px", height="50px">
+                        {% endif %}
+                        <div class="inner-profile-post-info">
+                        <a href="{% url 'posts' post.id%}">{{post.title}}</a>
+                        {% if post.content|length > 45 %}
+                        <p>{{post.content|slice:"0:44"}} <a href="{% url 'posts' post.id%}">Read More...</a></p>
+                        {% else %}
+                            <p>{{post.content}}</p>
+                        {% endif %}
+                        </div>
+                    </div>
+                {% if forloop.counter|divisibleby:2 and forloop.counter0 != 0 or forloop.last and posts|length > 0%}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                {% if posts|length > 0 %}
+                 <div class="page-btn">
+                    <a class="previous button">Previous</a>
+                    <div class="page-counter">
+                    </div>
+                    <a class="next button">Next</a>
+                </div>
+                {% endif %}
+            </div>
+            <div class="card profile-posts">
+                <div class="green-title">
+                <h4 class="city-posts text-shadow">Posts from {{user.profile.get_city_display}}</h4>
+                </div>
+                {% for city_post in city_posts %}
+                     {% if forloop.counter0|divisibleby:2 %}
+                        <div class="city-post-page">
+                    {% endif %}
+                    <div class= "card-body inner-profile-post">
+                        <img src="{{ city_post.user.profile.avatar.url }}" class="rounded-circle" width="50px", height="50px">
+                        <div class="inner-profile-city_-info">
+                        <a href="{% url 'posts' city_post.id%}">{{city_post.title}}</a>
+                        {% if city_post.content|length > 45 %}
+                        <p>{{city_post.content|slice:"0:44"}} <a href="{% url 'posts' city_post.id%}">Read More...</a></p>
+                        {% else %}
+                            <p>{{city_post.content}}</p>
+                        {% endif %}
+                        </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:2 and forloop.counter0 != 0 or forloop.last and city_posts|length > 0%}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                {% if city_posts|length > 0 %}
+                         <div class="page-btn">
+                            <a class="city-previous button">Previous</a>
+                            <div class="city-page-counter">
+                            </div>
+                            <a class="city-next button">Next</a>
+                        </div>
+               {% endif %}
+            </div>
+        <p class="user-city" style="display:none">{{user.profile.city}}</p>
+        </section>
+
+
+    </div>
+    {% comment %} {{user.username}}
+    {{user.date_joined}}
+    {{user.profile.get_city_display}} {% endcomment %}
+    
+    <script>
+    // {%comment%} https://stackoverflow.com/questions/14069421/show-an-image-preview-before-upload/31657793 {% endcomment %}
+    document.getElementById("id_avatar").onchange = function () {
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+        // get loaded data and render thumbnail.
+        document.getElementById("image").src = e.target.result;
+    };
+
+    // read the image file as a data URL.
+    reader.readAsDataURL(this.files[0]);
+    };
+    </script>
+    
+    {% if user.profile.dark_mode %}
+        <script>
+            const switchEl = document.getElementById('customSwitch1');
+            switchEl.checked = true;
+        </script>
+    {% endif %}
+
+{% endblock content %}
