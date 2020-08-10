@@ -84,6 +84,8 @@ def profile(request):
 def get_posts(request, post_id):
     posts = Post.objects.all()
     post = Post.objects.get(id=post_id)
+    signup_form = SignUpForm()
+    login_form = AuthenticationForm()
     if request.method == 'POST':
         form = PostForm(request.POST, instance=post) 
         if form.is_valid():
@@ -92,7 +94,7 @@ def get_posts(request, post_id):
     else:
         form = PostForm(instance=post)
         author = User.objects.get(id=post.user_id)
-        context = {'post': post, 'author': author, 'posts': posts, 'form': form,}
+        context = {'post': post, 'author': author, 'posts': posts, 'form': form,'signup_form': signup_form, 'login_form': login_form}
         return render(request, 'post.html', context)
 
 
@@ -105,6 +107,8 @@ def city_detail(request, city_id):
     cities = City.objects.all()
     city = City.objects.get(id=city_id)
     form = PostForm(request.POST)
+    signup_form = SignUpForm()
+    login_form = AuthenticationForm()
     user = request.user
     if request.method == 'POST':
         logged_user = User.objects.get(username=user) 
@@ -114,7 +118,7 @@ def city_detail(request, city_id):
         new_post.save()
         return redirect('city_detail', city_id)
     else:
-        context = {'cities': cities, 'city': city, "form": form, }
+        context = {'cities': cities, 'city': city, "form": form,'signup_form': signup_form, 'login_form': login_form }
         return render(request, 'cities/city.html', context)
 
 def delete_post(request, post_id):
