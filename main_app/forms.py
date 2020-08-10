@@ -33,6 +33,8 @@ class AvatarUploadForm(forms.ModelForm):
             'crop': 'thumb',
             'width': 200,
             'height': 200,
+            'gravity': "face", 
+            'radius': "max",
             'folder': 'avatars'
        }
     )
