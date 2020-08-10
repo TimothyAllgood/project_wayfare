@@ -261,6 +261,34 @@ footer p {
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 25px;
+	position: relative;
+}
+
+.inner-form {
+	display: flex;
+	flex-direction: column;
+}
+
+.inner-form:first-child label:first-child {
+	margin-left: 10px;
+}
+
+.inner-form label {
+	margin-left: 5px;
+	font-weight: bold;
+}
+
+.js-form-label {
+	opacity: 0;
+	transition: ease-in all 0.4s;
+	-webkit-transition: ease-in all 0.4s;
+	-moz-transition: ease-in all 0.4s;
+	-ms-transition: ease-in all 0.4s;
+	-o-transition: ease-in all 0.4s;
+}
+
+.label-show {
+	opacity: 1;
 }
 
 .card {

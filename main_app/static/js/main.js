@@ -123,3 +123,21 @@ cityPageCounter.addEventListener('click', (e) => {
 	j = parseInt(e.target.textContent) - 1;
 	cityPosts[parseInt(e.target.textContent) - 1].classList.add('active-page');
 });
+
+const formLabel = document.querySelectorAll('.js-form-label');
+
+const profileForm = document.querySelector('.profile-update');
+
+profileForm.addEventListener('focusin', (e) => {
+	for (label of formLabel) {
+		console.log(label);
+		label.classList.add('label-show');
+	}
+});
+
+profileForm.addEventListener('focusout', (e) => {
+	for (label of formLabel) {
+		console.log(label);
+		label.classList.remove('label-show');
+	}
+});
